@@ -1,12 +1,12 @@
 import wx
-from login import LoginFrame
 from database import inicializar_admin
+from gui import IniciodeSesion
 
 
 class MainApp(wx.App):
     def OnInit(self):
         inicializar_admin()
-        login_frame = LoginFrame(None, title="Inicio de Sesión")
+        login_frame = IniciodeSesion(None)
         login_frame.Show()
         return True
 
