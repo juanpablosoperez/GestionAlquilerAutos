@@ -1,90 +1,100 @@
 import wx
 
 ###########################################################################
-## Class Inicio de Sesión
+## Class InicioSesion
 ###########################################################################
 
-class IniciodeSesion(wx.Frame):
+class InicioSesion(wx.Frame):
 
     def __init__(self, parent):
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Inicio de Sesión", pos=wx.DefaultPosition,
-                          size=wx.Size(300, 330), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(300, 320), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         self.SetBackgroundColour(wx.Colour(192, 192, 192))
 
-        # Main Vertical Sizer
         bSizer1 = wx.BoxSizer(wx.VERTICAL)
 
-        # Image
-        self.m_bpButton2 = wx.BitmapButton(self, wx.ID_ANY, wx.Bitmap(
-            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/auto.png",
-            wx.BITMAP_TYPE_ANY), wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW)
-        bSizer1.Add(self.m_bpButton2, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        self.m_staticText156 = wx.StaticText(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_staticText156.Wrap(-1)
+        self.m_staticText156.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD))
 
-        # Username Label
-        self.m_staticText5 = wx.StaticText(self, wx.ID_ANY, u"Usuario", wx.DefaultPosition, wx.DefaultSize, 0)
+        bSizer1.Add(self.m_staticText156, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+
+        self.m_bitmap11 = wx.StaticBitmap(self, wx.ID_ANY, wx.Bitmap(u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/iniciar-sesion.png", wx.BITMAP_TYPE_ANY),
+                                          wx.DefaultPosition, wx.DefaultSize, 0)
+        bSizer1.Add(self.m_bitmap11, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+
+        sbSizer17 = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY, u"Ingrese sus datos"), wx.VERTICAL)
+
+        fgSizer20 = wx.FlexGridSizer(4, 2, 0, 0)
+        fgSizer20.SetFlexibleDirection(wx.BOTH)
+        fgSizer20.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
+
+        self.m_staticText5 = wx.StaticText(self, wx.ID_ANY, u"Usuario:    ", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText5.Wrap(-1)
-        self.m_staticText5.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
+        self.m_staticText5.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 
-        bSizer1.Add(self.m_staticText5, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        fgSizer20.Add(self.m_staticText5, 0, wx.ALIGN_CENTER | wx.ALIGN_TOP, 5)
 
-        # Username TextCtrl
-        self.m_textCtrl1 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl1 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.Point(-1, -1), wx.DefaultSize, 0)
         self.m_textCtrl1.SetMaxLength(100)
-        self.m_textCtrl1.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
-        self.m_textCtrl1.SetToolTip("Nombre de Usuario")
+        self.m_textCtrl1.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
+        self.m_textCtrl1.SetToolTip(wx.ToolTip(u"Nombre de Usuario"))
 
-        bSizer1.Add(self.m_textCtrl1, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        fgSizer20.Add(self.m_textCtrl1, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
-        # Password Label
-        self.m_staticText11 = wx.StaticText(self, wx.ID_ANY, u"Contraseña", wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_staticText11 = wx.StaticText(self, wx.ID_ANY, u"Contraseña:   ", wx.DefaultPosition, wx.DefaultSize, 0,
+                                            u"usuario")
         self.m_staticText11.Wrap(-1)
-        self.m_staticText11.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
+        self.m_staticText11.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
+        self.m_staticText11.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
 
-        bSizer1.Add(self.m_staticText11, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        fgSizer20.Add(self.m_staticText11, 0, wx.ALIGN_CENTER | wx.ALIGN_TOP, 5)
 
-        # Password TextCtrl
-        self.m_textCtrl11 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PASSWORD)
+        self.m_textCtrl11 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.Point(-1, -1), wx.DefaultSize,
+                                        wx.TE_PASSWORD)
         self.m_textCtrl11.SetMaxLength(100)
-        self.m_textCtrl11.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
-        self.m_textCtrl11.SetToolTip("Contraseña")
+        self.m_textCtrl11.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
+        self.m_textCtrl11.SetToolTip(wx.ToolTip(u"Contraseña de Usuario"))
 
-        bSizer1.Add(self.m_textCtrl11, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        fgSizer20.Add(self.m_textCtrl11, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
-        # No Account Label
-        self.m_staticText111 = wx.StaticText(self, wx.ID_ANY, u"No tienes cuenta?", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_staticText111.Wrap(-1)
-        self.m_staticText111.SetFont(wx.Font(8, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
+        sbSizer17.Add(fgSizer20, 1, wx.ALIGN_CENTER | wx.ALL, 5)
 
-        bSizer1.Add(self.m_staticText111, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        bSizer1.Add(sbSizer17, 1, wx.EXPAND, 5)
 
-        # Register Button
+        bSizer38 = wx.BoxSizer(wx.VERTICAL)
+
+        bSizer39 = wx.BoxSizer(wx.VERTICAL)
+
+        self.m_staticText69 = wx.StaticText(self, wx.ID_ANY, u"No tienes cuenta?", wx.DefaultPosition, wx.DefaultSize,
+                                            0)
+        self.m_staticText69.Wrap(-1)
+        bSizer39.Add(self.m_staticText69, 0, wx.ALL, 5)
+
+        bSizer38.Add(bSizer39, 0, wx.ALIGN_CENTER, 5)
+
         self.m_button2 = wx.Button(self, wx.ID_ANY, u"Registrarse", wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_button2.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
+        self.m_button2.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
         self.m_button2.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
-        self.m_button2.SetToolTip("Registrarse")
+        self.m_button2.SetToolTip(wx.ToolTip(u"Registrarse"))
 
-        bSizer1.Add(self.m_button2, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        bSizer38.Add(self.m_button2, 0, wx.ALIGN_CENTER, 5)
 
-        # Sizer for Cancel and Login Buttons
+        bSizer1.Add(bSizer38, 1, wx.ALIGN_CENTER, 5)
+
         bSizer4 = wx.BoxSizer(wx.HORIZONTAL)
 
-        self.m_button11 = wx.Button(self, wx.ID_ANY, u"Cancelar", wx.DefaultPosition, wx.DefaultSize, wx.BU_EXACTFIT)
-        self.m_button11.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
-        self.m_button11.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
-        self.m_button11.SetToolTip("Cancelar")
-
-        bSizer4.Add(self.m_button11, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
-
-        self.m_button1 = wx.Button(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize, wx.BU_EXACTFIT)
-        self.m_button1.SetFont(wx.Font(10, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, "Arial"))
+        self.m_button1 = wx.Button(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize,
+                                   wx.BU_EXACTFIT)
+        self.m_button1.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
         self.m_button1.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
-        self.m_button1.SetToolTip("Iniciar Sesión")
+        self.m_button1.SetToolTip(wx.ToolTip(u"Iniciar Sesión"))
 
-        bSizer4.Add(self.m_button1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
+        bSizer4.Add(self.m_button1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)  # Actualizado
 
-        bSizer1.Add(bSizer4, 0, wx.ALIGN_CENTER | wx.ALL, 5)
+        bSizer1.Add(bSizer4, 1, wx.ALIGN_CENTER_HORIZONTAL, 5)
 
         self.SetSizer(bSizer1)
         self.Layout()
@@ -93,7 +103,6 @@ class IniciodeSesion(wx.Frame):
 
         # Connect Events
         self.m_button2.Bind(wx.EVT_BUTTON, self.formularioderegistro)
-        self.m_button11.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button1.Bind(wx.EVT_BUTTON, self.iniciar_sesion)
 
     def __del__(self):
@@ -103,9 +112,8 @@ class IniciodeSesion(wx.Frame):
     def formularioderegistro(self, event):
         event.Skip()
 
-    def cerrar_sesion(self, event):
-        event.Skip()
-
     def iniciar_sesion(self, event):
         event.Skip()
+
+
 
