@@ -143,7 +143,7 @@ class RegistroAlquiler(wx.Frame):
 
         bSizer9.AddSpacer(10)
 
-        sbSizer2.Add(bSizer9, 0, wx.ALIGN_CENTER, 5)
+        sbSizer2.Add(bSizer9, 0,  wx.ALL | wx.ALIGN_CENTER, 5)
 
         self.m_panel2.SetSizer(sbSizer2)
         self.m_panel2.Layout()
