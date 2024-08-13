@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Creacion del formulario de Registro.">
-      <change afterPath="$PROJECT_DIR$/DataGenerators/generar_pagos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/generar_reservas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/generar_usuarios.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/generar_vehiculos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/gestion_alquiler_autos.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_pagos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_reservas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_usuarios.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_vehiculos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin">
+      <change afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +59,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.aa.executor": "Run",
     "Python.generar_datos.executor": "Run",
     "Python.generar_pagos.executor": "Run",
     "Python.generar_reservas.executor": "Run",
@@ -97,7 +91,29 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (3)">
+  <component name="RunManager" selected="Python.main (1)">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="gestionAlquilerAutos" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -186,35 +202,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="path_image" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="gestionAlquilerAutos" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/path_image.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main (3)" />
         <item itemvalue="Python.pantalla_crud_admin" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.main (2)" />
-        <item itemvalue="Python.path_image" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721775821237</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin">
+      <option name="closed" value="true" />
+      <created>1723501450587</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723501450587</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,6 +305,7 @@
     <MESSAGE value="Conexion con BD, Primer modelo de Login y archivo Utils para manejo de errores." />
     <MESSAGE value="Creacion del Login con Wxformbuilder." />
     <MESSAGE value="Creacion del formulario de Registro." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creacion del formulario de Registro." />
+    <MESSAGE value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
   </component>
 </project>
