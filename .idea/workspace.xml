@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin">
-      <change afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Nuevas pantallas relacionadas al CRUD (ABM)">
+      <change afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto/ver_detalle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="c83c3b82-f7f2-4a6f-866c-1a5499cba633" />
-        <option name="url" value="git@github.com:/juanpablosoperez/GestionAlquilerAutos.git" />
+        <option name="url" value="git@github.com:juanpablosoperez/GestionAlquilerAutos.git" />
       </UrlAndAccount>
     </option>
   </component>
@@ -57,31 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.aa.executor": "Run",
-    "Python.generar_datos.executor": "Run",
-    "Python.generar_pagos.executor": "Run",
-    "Python.generar_reservas.executor": "Run",
-    "Python.generar_usuarios.executor": "Run",
-    "Python.generar_vehiculos.executor": "Run",
-    "Python.importador_datos.executor": "Run",
-    "Python.importador_datos_pagos.executor": "Run",
-    "Python.importador_datos_usuarios.executor": "Run",
-    "Python.importador_datos_vehiculos.executor": "Run",
-    "Python.main (1).executor": "Run",
-    "Python.main (2).executor": "Run",
-    "Python.main (3).executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.pantalla_crud_admin.executor": "Run",
-    "Python.path_image.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/DataGenerators",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.aa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_datos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_pagos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_reservas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_usuarios.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_vehiculos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_pagos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_usuarios.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_vehiculos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (3).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (4).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pantalla_crud_admin.executor&quot;: &quot;Run&quot;,
+    &quot;Python.path_image.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/DataGenerators&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
@@ -91,7 +90,7 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.main (2)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -158,7 +157,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main (4)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -204,11 +203,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (2)" />
+        <item itemvalue="Python.main (4)" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main (3)" />
         <item itemvalue="Python.pantalla_crud_admin" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.main (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -284,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723501450587</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Nuevas pantallas relacionadas al CRUD (ABM)">
+      <option name="closed" value="true" />
+      <created>1723590531472</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723590531473</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -306,6 +313,7 @@
     <MESSAGE value="Creacion del Login con Wxformbuilder." />
     <MESSAGE value="Creacion del formulario de Registro." />
     <MESSAGE value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
+    <MESSAGE value="Nuevas pantallas relacionadas al CRUD (ABM)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nuevas pantallas relacionadas al CRUD (ABM)" />
   </component>
 </project>

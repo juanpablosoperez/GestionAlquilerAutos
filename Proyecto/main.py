@@ -9,6 +9,10 @@ from modificar_vehiculo import ModificarVehiculo
 from asignar_admin import AsignarAdmin
 from pagos import Pagos
 from ver_reservas_usuarios import VerReservasUsuarios
+from pantalla_principal_usuario import PantallaPrincipalUsuario
+from ver_detalle import VerDetalle
+from reserva_vehiculo import ReservaVehiculo
+from mis_reservas import MisReservas
 
 class MainApp(wx.App):
     def OnInit(self):
@@ -22,6 +26,10 @@ class MainApp(wx.App):
         pantalla_asignar_admin = AsignarAdmin(None)
         pantalla_pagos = Pagos(None)
         pantalla_ver_reservas_usuarios = VerReservasUsuarios(None)
+        pantalla_principal_usuario = PantallaPrincipalUsuario(None)
+        pantalla_ver_detalle = VerDetalle(None)
+        pantalla_reserva_vehiculo = ReservaVehiculo(None)
+        pantalla_mis_reservas = MisReservas(None)
 
         #login_frame.Show()
         #formulario_registro_frame.Show()
@@ -31,8 +39,11 @@ class MainApp(wx.App):
         #pantalla_modificar_vehiculo.Show()
         #pantalla_asignar_admin.Show()
         #pantalla_pagos.Show()
-        pantalla_ver_reservas_usuarios.Show()
-
+        #pantalla_ver_reservas_usuarios.Show()
+        #pantalla_principal_usuario.Show()
+        #pantalla_ver_detalle.Show()
+        #pantalla_reserva_vehiculo.Show()
+        pantalla_mis_reservas.Show()
         return True
 
 
