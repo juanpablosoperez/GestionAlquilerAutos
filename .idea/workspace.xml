@@ -4,12 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Finalización de las interfacez gráficas en código con WxPython">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Agregación de Icono para las ventanas.">
+      <change afterPath="$PROJECT_DIR$/Imagenes/Captura-de-pantalla-2021-09-22-a-las-6.07.15 (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/NAZ_b7923fadf1194885a4af9248b94f48db.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/administrador.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/agregar-usuario.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/auto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/beneficios.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/cita.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/coche.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/coche1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/coche2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/coche3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/documento.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/expediente.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/filtrar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/ganador.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/gestion-de-base-de-datos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/gestion-de-proyectos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/girar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/ingresos.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/iniciar-sesion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/lupa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Imagenes/reserva.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/asignar_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/mis_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
@@ -63,34 +86,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.aa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generar_datos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generar_pagos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generar_reservas.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generar_usuarios.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generar_vehiculos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.importador_datos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.importador_datos_pagos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.importador_datos_usuarios.executor&quot;: &quot;Run&quot;,
-    &quot;Python.importador_datos_vehiculos.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (3).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main (4).executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pantalla_crud_admin.executor&quot;: &quot;Run&quot;,
-    &quot;Python.path_image.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/DataGenerators&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.aa.executor": "Run",
+    "Python.generar_datos.executor": "Run",
+    "Python.generar_pagos.executor": "Run",
+    "Python.generar_reservas.executor": "Run",
+    "Python.generar_usuarios.executor": "Run",
+    "Python.generar_vehiculos.executor": "Run",
+    "Python.importador_datos.executor": "Run",
+    "Python.importador_datos_pagos.executor": "Run",
+    "Python.importador_datos_usuarios.executor": "Run",
+    "Python.importador_datos_vehiculos.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main (2).executor": "Run",
+    "Python.main (3).executor": "Run",
+    "Python.main (4).executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.pantalla_crud_admin.executor": "Run",
+    "Python.path_image.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/Imagenes",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\Imagenes" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos" />
     </key>
@@ -307,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724103608636</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Agregación de Icono para las ventanas.">
+      <option name="closed" value="true" />
+      <created>1724195594218</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724195594218</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -331,6 +363,7 @@
     <MESSAGE value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
     <MESSAGE value="Nuevas pantallas relacionadas al CRUD (ABM)" />
     <MESSAGE value="Finalización de las interfacez gráficas en código con WxPython" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalización de las interfacez gráficas en código con WxPython" />
+    <MESSAGE value="Agregación de Icono para las ventanas." />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregación de Icono para las ventanas." />
   </component>
 </project>
