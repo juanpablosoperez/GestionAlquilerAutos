@@ -4,13 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Nuevas pantallas relacionadas al CRUD (ABM)">
-      <change afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/ver_detalle.py" afterDir="false" />
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Finalización de las interfacez gráficas en código con WxPython">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/asignar_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/mis_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/ver_detalle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_detalle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +98,7 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (2)">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -179,7 +187,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pantalla_crud_admin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -192,7 +200,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -203,11 +211,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (4)" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main (3)" />
-        <item itemvalue="Python.pantalla_crud_admin" />
       </list>
     </recent_temporary>
   </component>
@@ -291,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723590531473</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Finalización de las interfacez gráficas en código con WxPython">
+      <option name="closed" value="true" />
+      <created>1724103608636</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1724103608636</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,6 +330,7 @@
     <MESSAGE value="Creacion del formulario de Registro." />
     <MESSAGE value="Generadores de Datos y nueva Interfaz gráfica para el inicio de sesión, formulario de registro, pantalla principal del admin y crud del admin" />
     <MESSAGE value="Nuevas pantallas relacionadas al CRUD (ABM)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nuevas pantallas relacionadas al CRUD (ABM)" />
+    <MESSAGE value="Finalización de las interfacez gráficas en código con WxPython" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalización de las interfacez gráficas en código con WxPython" />
   </component>
 </project>

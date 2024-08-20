@@ -43,7 +43,7 @@ class MainApp(wx.App):
         #pantalla_principal_usuario.Show()
         #pantalla_ver_detalle.Show()
         #pantalla_reserva_vehiculo.Show()
-        pantalla_mis_reservas.Show()
+        #pantalla_mis_reservas.Show()
         return True
 
 

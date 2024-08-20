@@ -13,6 +13,11 @@ class InicioSesion(wx.Frame):
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         self.SetBackgroundColour(wx.Colour(192, 192, 192))
 
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
         bSizer1 = wx.BoxSizer(wx.VERTICAL)
 
         self.m_staticText156 = wx.StaticText(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize, 0)

@@ -9,6 +9,11 @@ class Pagos(wx.Frame):
 
         # Reemplaza SetSizeHintsSz con SetSizeHints
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
 
         bSizer44 = wx.BoxSizer(wx.VERTICAL)
 
