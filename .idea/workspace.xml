@@ -4,44 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Agregación de Icono para las ventanas.">
-      <change afterPath="$PROJECT_DIR$/Imagenes/Captura-de-pantalla-2021-09-22-a-las-6.07.15 (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/NAZ_b7923fadf1194885a4af9248b94f48db.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/administrador.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/agregar-usuario.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/auto.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/beneficios.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/cita.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/coche.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/coche1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/coche2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/coche3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/documento.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/expediente.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/filtrar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/ganador.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/gestion-de-base-de-datos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/gestion-de-proyectos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/girar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/ingresos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/iniciar-sesion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/lupa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Imagenes/reserva.png" afterDir="false" />
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para que no puedan maximizarse las pantallas.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/asignar_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataGenerators/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_pagos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_reservas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_usuarios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_vehiculos.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_vehiculos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/mis_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/ver_detalle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_detalle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,17 +80,19 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/Imagenes",
+    "last_opened_file_path": "C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/Proyecto",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\Proyecto" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\Imagenes" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\Proyecto" />
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
@@ -339,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724195594218</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Funcionalidad para que no puedan maximizarse las pantallas.">
+      <option name="closed" value="true" />
+      <created>1724196283606</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1724196283606</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -364,6 +346,7 @@
     <MESSAGE value="Nuevas pantallas relacionadas al CRUD (ABM)" />
     <MESSAGE value="Finalización de las interfacez gráficas en código con WxPython" />
     <MESSAGE value="Agregación de Icono para las ventanas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregación de Icono para las ventanas." />
+    <MESSAGE value="Funcionalidad para que no puedan maximizarse las pantallas." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para que no puedan maximizarse las pantallas." />
   </component>
 </project>

@@ -5,7 +5,7 @@ import sqlite3
 file_name = "vehiculos_faker.xlsx"
 
 # Ruta al archivo de base de datos (está en el mismo directorio que el script)
-db_path = 'gestion_alquiler_autos.db'
+db_path = '../Proyecto/gestion_alquiler_autos.db'
 
 # Leer el archivo Excel en un DataFrame de pandas
 df = pd.read_excel(file_name)

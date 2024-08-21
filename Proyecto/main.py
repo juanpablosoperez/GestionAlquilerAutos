@@ -31,7 +31,7 @@ class MainApp(wx.App):
         pantalla_reserva_vehiculo = ReservaVehiculo(None)
         pantalla_mis_reservas = MisReservas(None)
 
-        #login_frame.Show()
+        login_frame.Show()
         #formulario_registro_frame.Show()
         #pantalla_principal_admin_frame.Show()
         #pantalla_crud_admin_frame.Show()
