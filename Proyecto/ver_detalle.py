@@ -8,10 +8,16 @@ import wx
 class VerDetalle(wx.Frame):
 
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Detalle del Vehículo", pos=wx.DefaultPosition,
-                          size=wx.Size(400, 440), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(400, 440), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
 
         bSizer28 = wx.BoxSizer(wx.VERTICAL)
 

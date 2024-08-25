@@ -1,5 +1,8 @@
 import wx
-
+import sqlite3
+from formulario_registro import FormularioRegistro
+from pantalla_principal_admin import PantallaPrincipalAdministrador
+from pantalla_principal_usuario import PantallaPrincipalUsuario
 ###########################################################################
 ## Class InicioSesion
 ###########################################################################
@@ -7,12 +10,18 @@ import wx
 class InicioSesion(wx.Frame):
 
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Inicio de Sesión", pos=wx.DefaultPosition,
-                          size=wx.Size(300, 320), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(300, 320), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         self.SetBackgroundColour(wx.Colour(192, 192, 192))
 
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
         bSizer1 = wx.BoxSizer(wx.VERTICAL)
 
         self.m_staticText156 = wx.StaticText(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -108,12 +117,60 @@ class InicioSesion(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def formularioderegistro(self, event):
+        # Crear e iniciar la ventana de registro
+        frm_registro = FormularioRegistro(self)
+        frm_registro.Show()
         event.Skip()
 
     def iniciar_sesion(self, event):
-        event.Skip()
+        usuario = self.m_textCtrl1.GetValue()
+        contrasena = self.m_textCtrl11.GetValue()
 
+        if self.verificar_credenciales(usuario, contrasena):
+            wx.MessageBox('Inicio de sesión exitoso', 'Info', wx.OK | wx.ICON_INFORMATION)
 
+            rol = self.obtener_rol_usuario(usuario)
+            if rol == 'administrador':
+                # Aquí abres la ventana correspondiente al administrador
+                self.abrir_ventana_administrador()
+            elif rol == 'cliente':
+                # Aquí abres la ventana correspondiente al cliente
+                self.abrir_ventana_cliente()
+        else:
+            wx.MessageBox('Usuario o contraseña incorrectos', 'Error', wx.OK | wx.ICON_ERROR)
+
+    def verificar_credenciales(self, usuario, contrasena):
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        # No se utiliza hashing, se compara directamente la contraseña en texto plano
+        query = "SELECT * FROM Usuario WHERE nombre=? AND password=?"
+        cursor.execute(query, (usuario, contrasena))
+        result = cursor.fetchone()
+
+        conn.close()
+
+        return result is not None
+
+    def obtener_rol_usuario(self, usuario):
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        query = "SELECT tipo FROM Usuario WHERE nombre=?"
+        cursor.execute(query, (usuario,))
+        result = cursor.fetchone()
+
+        conn.close()
+
+        return result[0] if result else None
+
+    def abrir_ventana_administrador(self):
+        ventana_admin = PantallaPrincipalAdministrador(None)
+        ventana_admin.Show()
+        self.Close()
+    def abrir_ventana_cliente(self):
+        ventana_cliente = PantallaPrincipalUsuario(None)
+        ventana_cliente.Show()
+        self.Close()
 

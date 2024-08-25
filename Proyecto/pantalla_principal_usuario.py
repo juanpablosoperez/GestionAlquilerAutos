@@ -1,6 +1,10 @@
 import wx
 import wx.grid
 
+from mis_reservas import MisReservas
+from ver_detalle import VerDetalle
+
+
 ###########################################################################
 ## Class PantallaPrincipalUsuario
 ###########################################################################
@@ -8,10 +12,16 @@ import wx.grid
 class PantallaPrincipalUsuario(wx.Frame):
 
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal", pos=wx.DefaultPosition,
-                          size=wx.Size(700, 530), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(700, 530), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
         self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_APPWORKSPACE))
 
         bSizer7 = wx.BoxSizer(wx.VERTICAL)
@@ -159,6 +169,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         # Connect Events
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
+        self.m_bpButton14.Bind(wx.EVT_BUTTON, self.ver_mis_reservas)
         self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_auto)
         self.m_button43.Bind(wx.EVT_BUTTON, self.ver_detalle)
 
@@ -175,5 +186,10 @@ class PantallaPrincipalUsuario(wx.Frame):
     def seleccionar_auto(self, event):
         event.Skip()
 
+    def ver_mis_reservas(self,event):
+        mis_reservas = MisReservas(None)
+        mis_reservas.Show()
+
     def ver_detalle(self, event):
-        event.Skip()
+        ver_detalle = VerDetalle(None)
+        ver_detalle.Show()

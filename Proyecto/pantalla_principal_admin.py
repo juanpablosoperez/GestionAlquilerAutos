@@ -1,4 +1,9 @@
 import wx
+from pantalla_crud_admin import RegistroAlquiler
+from pagos import Pagos
+from asignar_admin import AsignarAdmin
+from ver_reservas_usuarios import VerReservasUsuarios
+
 
 ###########################################################################
 ## Class PantallaPrincipalAdministrador
@@ -7,10 +12,16 @@ import wx
 class PantallaPrincipalAdministrador(wx.Frame):
 
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal Administrador", pos=wx.DefaultPosition,
-                          size=wx.Size(760, 500), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(760, 500), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
 
         bSizer123 = wx.BoxSizer(wx.VERTICAL)
 
@@ -23,13 +34,13 @@ class PantallaPrincipalAdministrador(wx.Frame):
 
         # List of buttons and their respective tooltips
         buttons = [
-            (image_path + 'gestion-de-base-de-datos.png', u"Gestión de Autos"),
-            (image_path + 'ingresos.png', u"Pagos"),
-            (image_path + 'reserva.png', u"Reservas"),
-            (image_path + 'administrador.png', u"Asignar Usuario Administrador")
+            (image_path + 'gestion-de-base-de-datos.png', u"Gestión de Autos", self.pantalla_crud_admin),
+            (image_path + 'ingresos.png', u"Pagos", self.pantalla_pagos_admin),
+            (image_path + 'reserva.png', u"Reservas", self.pantalla_reservas_admin),
+            (image_path + 'administrador.png', u"Asignar Usuario Administrador", self.asignar_admin)
         ]
 
-        for img_path, tooltip in buttons:
+        for img_path, tooltip, handler in buttons:
             bmp = wx.Bitmap(img_path, wx.BITMAP_TYPE_ANY)
             if bmp.IsOk():
                 button = wx.BitmapButton(self.m_toolBar2, wx.ID_ANY, bmp, wx.DefaultPosition, wx.DefaultSize,
@@ -38,9 +49,8 @@ class PantallaPrincipalAdministrador(wx.Frame):
                 button.SetToolTip(tooltip)
                 self.m_toolBar2.AddControl(button)
 
-                # Check if the button is the one we want to bind
-                if tooltip == u"Asignar Usuario Administrador":
-                    self.m_bpButton12 = button
+                # Bind the button to the event handler
+                button.Bind(wx.EVT_BUTTON, handler)
             else:
                 print(f"Error loading image: {img_path}")
 
@@ -94,16 +104,19 @@ class PantallaPrincipalAdministrador(wx.Frame):
 
     # Virtual event handlers, overide them in your derived class
     def pantalla_crud_admin(self, event):
-        event.Skip()
+        crud_admin = RegistroAlquiler(None)
+        crud_admin.Show()
 
 
     def pantalla_pagos_admin(self, event):
-        event.Skip()
+        pagos_admin = Pagos(None)
+        pagos_admin.Show()
 
 
     def pantalla_reservas_admin(self, event):
-        event.Skip()
-
+        reservas_admin = VerReservasUsuarios(None)
+        reservas_admin.Show()
 
     def asignar_admin(self, event):
-        event.Skip()
+        asignar_admin = AsignarAdmin(None)
+        asignar_admin.Show()

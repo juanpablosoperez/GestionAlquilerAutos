@@ -4,11 +4,17 @@ import wx.grid
 
 class Pagos(wx.Frame):
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Gestión de Pagos", pos=wx.DefaultPosition,
-                          size=wx.Size(650, 540), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(650, 540), style=estilo)
 
         # Reemplaza SetSizeHintsSz con SetSizeHints
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
 
         bSizer44 = wx.BoxSizer(wx.VERTICAL)
 

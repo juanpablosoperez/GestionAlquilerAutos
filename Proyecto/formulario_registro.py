@@ -1,5 +1,5 @@
 import wx
-
+import sqlite3
 ###########################################################################
 ## Class FormularioRegistro
 ###########################################################################
@@ -7,10 +7,16 @@ import wx
 class FormularioRegistro(wx.Frame):
 
     def __init__(self, parent):
+        estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Formulario de Registro", pos=wx.DefaultPosition,
-                          size=wx.Size(350, 480), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+                          size=wx.Size(350, 480), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
+        icon = wx.Icon(
+            u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
+            wx.BITMAP_TYPE_PNG)
+
+        self.SetIcon(icon)
         self.SetBackgroundColour(wx.Colour(192, 192, 192))
 
         bSizer3 = wx.BoxSizer(wx.VERTICAL)
@@ -152,6 +158,32 @@ class FormularioRegistro(wx.Frame):
     def cerrar_sesion(self, event):
         self.Close()
 
+    def cerrar_registro(self, event):
+        self.Close()
+
     def registrar_usuario(self, event):
-        # Implement registration logic here
-        wx.MessageBox("Usuario registrado con éxito.", "Información", wx.OK | wx.ICON_INFORMATION)
+        nombre = self.m_textCtrl1.GetValue()
+        apellido = self.m_textCtrl11.GetValue()
+        email = self.m_textCtrl111.GetValue()
+        contrasena = self.m_textCtrl1111.GetValue()
+        telefono = self.m_textCtrl1112.GetValue()
+        direccion = self.m_textCtrl11121.GetValue()
+
+        if not all([nombre, apellido, email, contrasena, telefono, direccion]):
+            wx.MessageBox('Por favor, complete todos los campos.', 'Error', wx.OK | wx.ICON_ERROR)
+            return
+
+        try:
+            conn = sqlite3.connect('gestion_alquiler_autos.db')
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO Usuario (nombre, apellido, email, password, telefono, direccion, tipo) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (nombre, apellido, email, contrasena, telefono, direccion, "cliente"))
+            conn.commit()
+            wx.MessageBox('Registro exitoso.', 'Éxito', wx.OK | wx.ICON_INFORMATION)
+            self.Close()
+        except sqlite3.Error as e:
+            wx.MessageBox(f'Error al registrar el usuario: {e}', 'Error', wx.OK | wx.ICON_ERROR)
+        finally:
+            conn.close()
+
