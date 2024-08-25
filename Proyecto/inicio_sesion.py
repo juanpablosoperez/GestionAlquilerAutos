@@ -1,6 +1,8 @@
 import wx
 import sqlite3
 from formulario_registro import FormularioRegistro
+from pantalla_principal_admin import PantallaPrincipalAdministrador
+from pantalla_principal_usuario import PantallaPrincipalUsuario
 ###########################################################################
 ## Class InicioSesion
 ###########################################################################
@@ -135,7 +137,6 @@ class InicioSesion(wx.Frame):
             elif rol == 'cliente':
                 # Aquí abres la ventana correspondiente al cliente
                 self.abrir_ventana_cliente()
-            self.Close()
         else:
             wx.MessageBox('Usuario o contraseña incorrectos', 'Error', wx.OK | wx.ICON_ERROR)
 
@@ -165,10 +166,11 @@ class InicioSesion(wx.Frame):
         return result[0] if result else None
 
     def abrir_ventana_administrador(self):
-        # Implementa aquí la lógica para abrir la ventana del administrador
-        pass
-
+        ventana_admin = PantallaPrincipalAdministrador(None)
+        ventana_admin.Show()
+        self.Close()
     def abrir_ventana_cliente(self):
-        # Implementa aquí la lógica para abrir la ventana del cliente
-        pass
+        ventana_cliente = PantallaPrincipalUsuario(None)
+        ventana_cliente.Show()
+        self.Close()
 

@@ -1,6 +1,10 @@
 import wx
 import wx.grid
 
+from mis_reservas import MisReservas
+from ver_detalle import VerDetalle
+
+
 ###########################################################################
 ## Class PantallaPrincipalUsuario
 ###########################################################################
@@ -165,6 +169,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         # Connect Events
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
+        self.m_bpButton14.Bind(wx.EVT_BUTTON, self.ver_mis_reservas)
         self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_auto)
         self.m_button43.Bind(wx.EVT_BUTTON, self.ver_detalle)
 
@@ -181,5 +186,10 @@ class PantallaPrincipalUsuario(wx.Frame):
     def seleccionar_auto(self, event):
         event.Skip()
 
+    def ver_mis_reservas(self,event):
+        mis_reservas = MisReservas(None)
+        mis_reservas.Show()
+
     def ver_detalle(self, event):
-        event.Skip()
+        ver_detalle = VerDetalle(None)
+        ver_detalle.Show()

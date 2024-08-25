@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para que no puedan maximizarse las pantallas.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataGenerators/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_pagos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_reservas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_usuarios.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataGenerators/importador_datos_vehiculos.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataGenerators/importador_datos_vehiculos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/login.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/utils.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,32 +58,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.aa.executor": "Run",
-    "Python.generar_datos.executor": "Run",
-    "Python.generar_pagos.executor": "Run",
-    "Python.generar_reservas.executor": "Run",
-    "Python.generar_usuarios.executor": "Run",
-    "Python.generar_vehiculos.executor": "Run",
-    "Python.importador_datos.executor": "Run",
-    "Python.importador_datos_pagos.executor": "Run",
-    "Python.importador_datos_usuarios.executor": "Run",
-    "Python.importador_datos_vehiculos.executor": "Run",
-    "Python.main (1).executor": "Run",
-    "Python.main (2).executor": "Run",
-    "Python.main (3).executor": "Run",
-    "Python.main (4).executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.pantalla_crud_admin.executor": "Run",
-    "Python.path_image.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/Proyecto",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.aa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_datos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_pagos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_reservas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_usuarios.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generar_vehiculos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_pagos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_usuarios.executor&quot;: &quot;Run&quot;,
+    &quot;Python.importador_datos_vehiculos.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (2).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (3).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (4).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main (5).executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pantalla_crud_admin.executor&quot;: &quot;Run&quot;,
+    &quot;Python.path_image.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JUAMPI/Documentos/Proyectos/gestionAlquilerAutos/Proyecto&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\Proyecto" />
@@ -96,29 +97,7 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="gestionAlquilerAutos" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.main (3)">
     <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -185,6 +164,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main (5)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="gestionAlquilerAutos" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -209,11 +210,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main (3)" />
+        <item itemvalue="Python.main (5)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (4)" />
-        <item itemvalue="Python.main (1)" />
-        <item itemvalue="Python.main (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -321,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724196283606</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos.">
+      <option name="closed" value="true" />
+      <created>1724199020301</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724199020301</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,6 +356,7 @@
     <MESSAGE value="Finalización de las interfacez gráficas en código con WxPython" />
     <MESSAGE value="Agregación de Icono para las ventanas." />
     <MESSAGE value="Funcionalidad para que no puedan maximizarse las pantallas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para que no puedan maximizarse las pantallas." />
+    <MESSAGE value="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos." />
   </component>
 </project>
