@@ -1,5 +1,5 @@
 import wx
-
+from reserva_vehiculo import ReservaVehiculo
 
 ###########################################################################
 ## Class VerDetalle
@@ -163,4 +163,5 @@ class VerDetalle(wx.Frame):
         event.Skip()
 
     def reservar_auto(self, event):
-        event.Skip()
+        reservar_vehiculo = ReservaVehiculo(None)
+        reservar_vehiculo.Show()
