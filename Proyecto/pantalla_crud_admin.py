@@ -134,6 +134,8 @@ class RegistroAlquiler(wx.Frame):
         self.m_button43.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
         self.m_button43.SetToolTip(wx.ToolTip(u"Modificar"))
 
+        self.m_button43.Bind(wx.EVT_BUTTON, self.on_modificar_click)
+
         bSizer9.Add(self.m_button43, 0, wx.ALL, 5)
 
         self.m_button44 = wx.Button(self.m_panel2, wx.ID_ANY, u"Eliminar", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -239,23 +241,27 @@ class RegistroAlquiler(wx.Frame):
         # Obtener el atributo seleccionado del ChoiceBox
         atributo_seleccionado = self.m_choice1.GetStringSelection()
 
-        if atributo_seleccionado == "Seleccionar":
-            wx.MessageBox("Por favor, seleccione un atributo para buscar.", "Error", wx.OK | wx.ICON_ERROR)
-            return
-
         # Obtener el texto ingresado en el campo de búsqueda
         texto_busqueda = self.m_searchCtrl1.GetValue()
 
         # Crear la consulta SQL dinámica basada en el atributo seleccionado
-        consulta_sql = f"SELECT * FROM Vehiculo WHERE {atributo_seleccionado} LIKE ?"
-        valor_busqueda = f"%{texto_busqueda}%"
+        if atributo_seleccionado == "Seleccionar":
+            # Mostrar todos los registros ordenados por ID descendente si no se selecciona ningún atributo
+            consulta_sql = "SELECT * FROM Vehiculo ORDER BY vehiculo_id"
+            valor_busqueda = None
+        else:
+            consulta_sql = f"SELECT * FROM Vehiculo WHERE {atributo_seleccionado} LIKE ?"
+            valor_busqueda = f"%{texto_busqueda}%"
 
         # Conectar a la base de datos y ejecutar la consulta
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
         try:
             print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")  # Depuración
-            cursor.execute(consulta_sql, (valor_busqueda,))
+            if valor_busqueda:
+                cursor.execute(consulta_sql, (valor_busqueda,))
+            else:
+                cursor.execute(consulta_sql)
             resultados = cursor.fetchall()
             print(f"Resultados obtenidos: {resultados}")  # Depuración
         except sqlite3.OperationalError as e:
@@ -305,9 +311,6 @@ class RegistroAlquiler(wx.Frame):
         agregar_auto = AgregarVehiculo(None)
         agregar_auto.Show()
 
-    def modificar_auto(self, event):
-        modificar_auto = ModificarVehiculo(None)
-        modificar_auto.Show()
 
     def eliminar_auto(self, id_vehiculo):
         # Conectar a la base de datos
@@ -347,3 +350,52 @@ class RegistroAlquiler(wx.Frame):
 
         # Guardar el ID para usarlo en la función eliminar_auto
         self.id_vehiculo_seleccionado = id_vehiculo
+
+    def modificar_auto(self, event):
+        # Obtener el índice de la fila seleccionada en la grilla
+        fila_seleccionada = self.m_grid2.GetSelectedRows()
+
+        if not fila_seleccionada:
+            wx.MessageBox("Por favor, seleccione un vehículo para modificar.", "Error", wx.OK | wx.ICON_ERROR)
+            return
+
+        # Obtener los datos del vehículo seleccionado
+        fila = fila_seleccionada[0]
+        datos_vehiculo = [self.m_grid2.GetCellValue(fila, col) for col in range(self.m_grid2.GetNumberCols())]
+
+        # Crear la ventana de modificación pasando los datos del vehículo
+        modificar_auto = ModificarVehiculo(None, datos_vehiculo)
+        modificar_auto.Show()
+
+    def on_modificar_click(self, event):
+        # Obtener el vehículo seleccionado en la grilla
+        datos_vehiculo = self.obtener_datos_vehiculo_seleccionado()
+
+        if datos_vehiculo:
+            # Crear y mostrar la ventana de modificar, pasando datos_vehiculo
+            ventana_modificar = ModificarVehiculo(self, datos_vehiculo)
+            ventana_modificar.Show()
+
+    def obtener_datos_vehiculo_seleccionado(self):
+        # Obtener el índice de la fila seleccionada
+        fila_seleccionada = self.m_grid2.GetGridCursorRow()
+
+        if fila_seleccionada == -1:
+            wx.MessageBox("Por favor, seleccione un vehículo en la grilla.", "Error", wx.OK | wx.ICON_ERROR)
+            return None
+
+        # Obtener los datos de la fila seleccionada
+        id_vehiculo = self.m_grid2.GetCellValue(fila_seleccionada, 0)
+        marca = self.m_grid2.GetCellValue(fila_seleccionada, 1)
+        modelo = self.m_grid2.GetCellValue(fila_seleccionada, 2)
+        año = self.m_grid2.GetCellValue(fila_seleccionada, 3)
+        precio_por_dia = self.m_grid2.GetCellValue(fila_seleccionada, 4)
+        disponibilidad = self.m_grid2.GetCellValue(fila_seleccionada, 5)
+        matricula = self.m_grid2.GetCellValue(fila_seleccionada, 6)
+        color = self.m_grid2.GetCellValue(fila_seleccionada, 7)
+
+        # Convertir disponibilidad a formato legible si es necesario
+        disponibilidad = "Disponible" if disponibilidad == "1" else "No disponible"
+
+        # Retornar los datos como una tupla
+        return (int(id_vehiculo), marca, modelo, año, precio_por_dia, disponibilidad, matricula, color)

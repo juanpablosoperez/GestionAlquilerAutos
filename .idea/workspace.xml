@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad de busqueda avanzada y eliminacion de registros.">
       <change afterPath="$PROJECT_DIR$/Proyecto/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Proyecto/enviar_email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -344,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724857739215</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Funcionalidad de busqueda avanzada y eliminacion de registros.">
+      <option name="closed" value="true" />
+      <created>1725114089004</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725114089004</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,6 +382,7 @@
     <MESSAGE value="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos." />
     <MESSAGE value="Funcionalidad para que segun el rol que inicia sesion, tenga una pantalla distinta y distintas opciones de menu." />
     <MESSAGE value="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion." />
+    <MESSAGE value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
   </component>
 </project>
