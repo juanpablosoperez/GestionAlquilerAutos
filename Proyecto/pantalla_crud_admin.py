@@ -1,5 +1,8 @@
 import wx
 import wx.grid
+from agregar_vehiculo import AgregarVehiculo
+from modificar_vehiculo import ModificarVehiculo
+import sqlite3
 
 
 ###########################################################################
@@ -57,7 +60,9 @@ class RegistroAlquiler(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID", u"Marca", u"Modelo", u"Disponibilidad", u"Precio por Día"]
+        m_choice1Choices = [u"Seleccionar", u"marca", u"modelo",u"precio_por_dia",
+                            u"disponibilidad", u"matricula", u"color"]
+
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
         fgSizer4.Add(self.m_choice1, 0, wx.ALL, 5)
@@ -221,6 +226,9 @@ class RegistroAlquiler(wx.Frame):
         self.m_button43.Bind(wx.EVT_BUTTON, self.modificar_auto)
         self.m_button44.Bind(wx.EVT_BUTTON, self.eliminar_auto)
         self.m_button45.Bind(wx.EVT_BUTTON, self.salir_crud)
+        # Asociar eventos
+        self.m_grid2.Bind(wx.grid.EVT_GRID_SELECT_CELL, self.on_grid_select)
+        self.m_button44.Bind(wx.EVT_BUTTON, self.on_eliminar_click)
 
     def __del__(self):
         pass
@@ -228,19 +236,114 @@ class RegistroAlquiler(wx.Frame):
         # Virtual event handlers, overide them in your derived class
 
     def buscar_auto(self, event):
-        event.Skip()
+        # Obtener el atributo seleccionado del ChoiceBox
+        atributo_seleccionado = self.m_choice1.GetStringSelection()
+
+        if atributo_seleccionado == "Seleccionar":
+            wx.MessageBox("Por favor, seleccione un atributo para buscar.", "Error", wx.OK | wx.ICON_ERROR)
+            return
+
+        # Obtener el texto ingresado en el campo de búsqueda
+        texto_busqueda = self.m_searchCtrl1.GetValue()
+
+        # Crear la consulta SQL dinámica basada en el atributo seleccionado
+        consulta_sql = f"SELECT * FROM Vehiculo WHERE {atributo_seleccionado} LIKE ?"
+        valor_busqueda = f"%{texto_busqueda}%"
+
+        # Conectar a la base de datos y ejecutar la consulta
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+        try:
+            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")  # Depuración
+            cursor.execute(consulta_sql, (valor_busqueda,))
+            resultados = cursor.fetchall()
+            print(f"Resultados obtenidos: {resultados}")  # Depuración
+        except sqlite3.OperationalError as e:
+            wx.MessageBox(f"Error en la consulta SQL: {e}", "Error", wx.OK | wx.ICON_ERROR)
+            resultados = []
+        conn.close()
+
+        # Limpiar el grid antes de mostrar los nuevos resultados
+        self.m_grid2.ClearGrid()
+
+        # Verificar si hay resultados y ajustar el tamaño de la grilla si es necesario
+        if resultados:
+            num_filas = len(resultados)
+            num_columnas = len(resultados[0])  # Suponiendo que todas las filas tienen el mismo número de columnas
+
+            # Ajustar el número de filas en la grilla
+            if num_filas > self.m_grid2.GetNumberRows():
+                self.m_grid2.AppendRows(num_filas - self.m_grid2.GetNumberRows())
+
+            # Ajustar el número de columnas en la grilla
+            if num_columnas > self.m_grid2.GetNumberCols():
+                self.m_grid2.AppendCols(num_columnas - self.m_grid2.GetNumberCols())
+
+            # Cargar los resultados en el grid
+            for i, fila in enumerate(resultados):
+                for j, valor in enumerate(fila):
+                    # Convertir el valor del campo "disponibilidad"
+                    if j == 5:  # Suponiendo que la columna "disponibilidad" es la sexta (índice 5)
+                        valor = 'Disponible' if valor == 1 else 'No disponible'
+                    self.m_grid2.SetCellValue(i, j, str(valor))
+        else:
+            wx.MessageBox("No se encontraron resultados.", "Información", wx.OK | wx.ICON_INFORMATION)
 
     def refrescar_busqueda(self, event):
-        event.Skip()
+        # Limpiar solo las filas del grid, manteniendo los títulos de las columnas
+        num_rows = self.m_grid2.GetNumberRows()
+        if num_rows > 0:
+            self.m_grid2.DeleteRows(0, num_rows)
+
+        # Limpiar el campo de búsqueda
+        self.m_searchCtrl1.SetValue("")
+
+        # Restablecer el ChoiceBox a la opción predeterminada
+        self.m_choice1.SetSelection(0)  # Asumiendo que la primera opción es la predeterminada
 
     def agregar_auto(self, event):
-        event.Skip()
+        agregar_auto = AgregarVehiculo(None)
+        agregar_auto.Show()
 
     def modificar_auto(self, event):
-        event.Skip()
+        modificar_auto = ModificarVehiculo(None)
+        modificar_auto.Show()
 
-    def eliminar_auto(self, event):
-        event.Skip()
+    def eliminar_auto(self, id_vehiculo):
+        # Conectar a la base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        try:
+            # Ejecutar la consulta DELETE
+            cursor.execute("DELETE FROM Vehiculo WHERE vehiculo_id = ?", (id_vehiculo,))
+            conn.commit()
+            # Mostrar un mensaje de éxito
+            wx.MessageBox("El registro ha sido eliminado con éxito.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+            # Refrescar el grid
+            self.refrescar_busqueda(None)
+        except sqlite3.Error as e:
+            # Mostrar un mensaje de error
+            wx.MessageBox(f"Error al eliminar el registro: {e}", "Error", wx.OK | wx.ICON_ERROR)
+        finally:
+            conn.close()
+
+    def on_eliminar_click(self, event):
+        if hasattr(self, 'id_vehiculo_seleccionado'):
+            id_vehiculo = self.id_vehiculo_seleccionado
+            self.eliminar_auto(id_vehiculo)
+        else:
+            wx.MessageBox("No hay un registro seleccionado para eliminar.", "Error", wx.OK | wx.ICON_ERROR)
 
     def salir_crud(self, event):
-        event.Skip()
+        self.Close()
+
+    def on_grid_select(self, event):
+        # Obtener la fila seleccionada
+        fila_seleccionada = event.GetRow()
+
+        # Obtener el valor del ID (suponiendo que es la primera columna)
+        id_vehiculo = self.m_grid2.GetCellValue(fila_seleccionada, 0)
+
+        # Guardar el ID para usarlo en la función eliminar_auto
+        self.id_vehiculo_seleccionado = id_vehiculo
