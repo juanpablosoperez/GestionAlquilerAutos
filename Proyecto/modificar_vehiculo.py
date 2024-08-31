@@ -1,12 +1,12 @@
 import wx
-
+import  sqlite3
 ###########################################################################
 ## Clase ModificarVehiculo
 ###########################################################################
 
 class ModificarVehiculo(wx.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, datos_vehiculo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Modificar Vehículo", pos=wx.DefaultPosition,
                           size=wx.Size(300, 380), style=estilo)
@@ -79,7 +79,7 @@ class ModificarVehiculo(wx.Frame):
 
         fgSizer9.Add(self.m_staticText243, 0, wx.ALL, 5)
 
-        m_choice2Choices = [u"Seleccionar", u"Desocupado", u"Ocupado"]
+        m_choice2Choices = [ u"Disponible", u"No disponible"]
         self.m_choice2 = wx.Choice(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, m_choice2Choices, 0)
         self.m_choice2.SetSelection(0)
         fgSizer9.Add(self.m_choice2, 0, wx.ALL, 5)
@@ -134,13 +134,71 @@ class ModificarVehiculo(wx.Frame):
         # Conectar eventos
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button5.Bind(wx.EVT_BUTTON, self.agregar_auto)
+        # Asociar el evento del botón "Agregar" a la función de actualización
+        self.Bind(wx.EVT_BUTTON, self.agregar_auto, id=self.m_button5.GetId())
+
+        # Guardar el ID del vehículo para futuras actualizaciones
+        self.id_vehiculo = datos_vehiculo[0]
+
+        # Inicializar los campos con los datos del vehículo
+        self.inicializar_campos(datos_vehiculo)
+
+        # Inicializar campos con datos del vehículo
+        self.inicializar_campos(datos_vehiculo)
 
     def __del__(self):
         pass
 
+    def inicializar_campos(self, datos_vehiculo):
+        # Asumimos que datos_vehiculo es una tupla con los datos del vehículo
+        self.m_textCtrl18.SetValue(datos_vehiculo[1])  # Marca
+        self.m_textCtrl19.SetValue(datos_vehiculo[2])  # Modelo
+        self.m_textCtrl26.SetValue(str(datos_vehiculo[3]))  # Año
+        self.m_textCtrl192.SetValue(str(datos_vehiculo[4]))  # Precio por Día
+        self.m_choice2.SetSelection(1 if datos_vehiculo[5] == "Disponible" else 2)  # Disponibilidad
+        self.m_textCtrl193.SetValue(datos_vehiculo[6])  # Matrícula
+        self.m_textCtrl194.SetValue(datos_vehiculo[7])  # Color
+
     # Manejadores de eventos
     def cerrar_sesion(self, event):
-        event.Skip()
+        self.Close()
 
     def agregar_auto(self, event):
-        event.Skip()
+        # Obtener los datos modificados de los controles
+        marca = self.m_textCtrl18.GetValue()
+        modelo = self.m_textCtrl19.GetValue()
+        anio = self.m_textCtrl26.GetValue()
+        precio_por_dia = self.m_textCtrl192.GetValue()
+        disponibilidad = 1 if self.m_choice2.GetSelection() == 1 else 0
+        matricula = self.m_textCtrl193.GetValue()
+        color = self.m_textCtrl194.GetValue()
+
+        # Validar los datos
+        if not (marca and modelo and anio and precio_por_dia and matricula and color):
+            wx.MessageBox("Por favor, complete todos los campos.", "Error", wx.OK | wx.ICON_ERROR)
+            return
+
+        # Actualizar los datos en la base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        try:
+            consulta_sql = """UPDATE Vehiculo
+                              SET marca = ?,
+                                  modelo = ?,
+                                  anio = ?,
+                                  precio_por_dia = ?,
+                                  disponibilidad = ?,
+                                  matricula = ?,
+                                  color = ?
+                              WHERE vehiculo_id = ?"""
+            valores = (marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, self.id_vehiculo)
+            cursor.execute(consulta_sql, valores)
+            conn.commit()
+
+            wx.MessageBox("Vehículo actualizado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+            self.Close()
+        except sqlite3.Error as e:
+            wx.MessageBox(f"Error al actualizar el vehículo: {e}", "Error", wx.OK | wx.ICON_ERROR)
+        finally:
+            conn.close()

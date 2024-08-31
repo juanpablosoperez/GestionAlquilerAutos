@@ -1,5 +1,6 @@
 import wx
 import sqlite3
+from enviar_email import enviar_correo_confirmacion
 ###########################################################################
 ## Class FormularioRegistro
 ###########################################################################
@@ -181,6 +182,7 @@ class FormularioRegistro(wx.Frame):
                 (nombre, apellido, email, contrasena, telefono, direccion, "cliente"))
             conn.commit()
             wx.MessageBox('Registro exitoso.', 'Éxito', wx.OK | wx.ICON_INFORMATION)
+            enviar_correo_confirmacion(email)
             self.Close()
         except sqlite3.Error as e:
             wx.MessageBox(f'Error al registrar el usuario: {e}', 'Error', wx.OK | wx.ICON_ERROR)

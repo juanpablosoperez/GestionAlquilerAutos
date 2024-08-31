@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad de busqueda avanzada y eliminacion de registros.">
+      <change afterPath="$PROJECT_DIR$/Proyecto/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.aa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bd.executor&quot;: &quot;Run&quot;,
+    &quot;Python.enviar_email.executor&quot;: &quot;Run&quot;,
     &quot;Python.generar_datos.executor&quot;: &quot;Run&quot;,
     &quot;Python.generar_pagos.executor&quot;: &quot;Run&quot;,
     &quot;Python.generar_reservas.executor&quot;: &quot;Run&quot;,
@@ -97,8 +96,8 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (3)">
-    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main (5)">
+    <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,7 +119,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main (3)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main (3)" />
         <item itemvalue="Python.main (5)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (4)" />
+        <item itemvalue="Python.main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -330,7 +329,31 @@
       <option name="project" value="LOCAL" />
       <updated>1724199020301</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Funcionalidad para que segun el rol que inicia sesion, tenga una pantalla distinta y distintas opciones de menu.">
+      <option name="closed" value="true" />
+      <created>1724608058636</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724608058637</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion.">
+      <option name="closed" value="true" />
+      <created>1724857739215</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1724857739215</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Funcionalidad de busqueda avanzada y eliminacion de registros.">
+      <option name="closed" value="true" />
+      <created>1725114089004</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725114089004</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -357,6 +380,9 @@
     <MESSAGE value="Agregación de Icono para las ventanas." />
     <MESSAGE value="Funcionalidad para que no puedan maximizarse las pantallas." />
     <MESSAGE value="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad de inicio de sesión exitosa y de registro de usuario con impacto en la base de datos." />
+    <MESSAGE value="Funcionalidad para que segun el rol que inicia sesion, tenga una pantalla distinta y distintas opciones de menu." />
+    <MESSAGE value="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion." />
+    <MESSAGE value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
   </component>
 </project>

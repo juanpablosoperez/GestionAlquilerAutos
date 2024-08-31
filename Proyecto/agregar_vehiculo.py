@@ -1,5 +1,5 @@
 import wx
-
+import sqlite3
 
 ###########################################################################
 ## Class AgregarVehiculo
@@ -79,7 +79,7 @@ class AgregarVehiculo(wx.Frame):
 
         fgSizer9.Add(self.m_staticText243, 0, wx.ALL, 5)
 
-        m_choice2Choices = [u"Seleccionar", u"Desocupado", u"Ocupado"]
+        m_choice2Choices = [u"Seleccionar", u"Disponible", u"No disponible"]
         self.m_choice2 = wx.Choice(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, m_choice2Choices, 0)
         self.m_choice2.SetSelection(0)
         fgSizer9.Add(self.m_choice2, 0, wx.ALL, 5)
@@ -141,9 +141,43 @@ class AgregarVehiculo(wx.Frame):
     # Virtual event handlers, override them in your derived class
     def cancelar(self, event):
         self.Close()
-        event.Skip()
 
     def agregar(self, event):
-        wx.MessageBox('Vehículo agregado con éxito.', 'Información', wx.OK | wx.ICON_INFORMATION)
-        self.Close()
-        event.Skip()
+        # Obtener los datos del nuevo vehículo desde los controles de la interfaz
+        marca = self.m_textCtrl18.GetValue()
+        modelo = self.m_textCtrl19.GetValue()
+        anio = int(self.m_textCtrl26.GetValue())
+        precio_por_dia = float(self.m_textCtrl192.GetValue())
+        disponibilidad = 1 if self.m_choice2.GetSelection() == 1 else 0
+        matricula = self.m_textCtrl193.GetValue()
+        color = self.m_textCtrl194.GetValue()
+
+        # Conectar a la base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        try:
+            # Obtener el último ID utilizado en la tabla
+            cursor.execute("SELECT MAX(vehiculo_id) FROM Vehiculo")
+            ultimo_id = cursor.fetchone()[0]
+            nuevo_id = (ultimo_id + 1) if ultimo_id is not None else 1
+
+            # Insertar el nuevo registro
+            consulta_sql = """
+                INSERT INTO Vehiculo (vehiculo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """
+            cursor.execute(consulta_sql, (nuevo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color))
+
+            # Confirmar los cambios
+            conn.commit()
+
+            wx.MessageBox('Vehículo agregado con éxito.', 'Información', wx.OK | wx.ICON_INFORMATION)
+
+        except sqlite3.Error as e:
+            wx.MessageBox(f"Error al agregar el vehículo: {e}", "Error", wx.OK | wx.ICON_ERROR)
+
+        finally:
+            # Cerrar la conexión
+            conn.close()
+            self.Close()
