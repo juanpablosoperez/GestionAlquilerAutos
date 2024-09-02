@@ -1,8 +1,5 @@
 import wx
-
-###########################################################################
-## Class AsignarAdmin
-###########################################################################
+import sqlite3
 
 class AsignarAdmin(wx.Frame):
 
@@ -157,18 +154,124 @@ class AsignarAdmin(wx.Frame):
         self.Layout()
         self.Centre(wx.BOTH)
 
+        # Bind events
+        self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_usuario)
+        self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_asign_admin)
+        self.m_button5.Bind(wx.EVT_BUTTON, self.confirmar_admin)
+        self.m_checkBox2.Bind(wx.EVT_CHECKBOX, self.actualizar_tipo_usuario)
+        self.m_checkBox21.Bind(wx.EVT_CHECKBOX, self.actualizar_tipo_usuario)
+
     def __del__(self):
         pass
 
-    # Virtual event handlers, overide them in your derived class
-    def buscar_auto(self, event):
-        event.Skip()
+    def buscar_usuario(self, event):
+        # Obtener el atributo seleccionado del ChoiceBox
+        atributo_seleccionado = self.m_choice1.GetStringSelection()
 
-    def refrescar_busqueda(self, event):
-        event.Skip()
+        # Obtener el texto ingresado en el campo de búsqueda
+        texto_busqueda = self.m_searchCtrl1.GetValue()
+
+        # Crear la consulta SQL dinámica basada en el atributo seleccionado
+        if atributo_seleccionado == "Seleccionar":
+            consulta_sql = "SELECT * FROM Usuario ORDER BY usuario_id"
+            valor_busqueda = None
+        else:
+            # Mapeo del atributo seleccionado a la columna de la base de datos
+            if atributo_seleccionado == "ID":
+                columna = "usuario_id"
+            elif atributo_seleccionado == "Nombre":
+                columna = "nombre"
+            else:
+                wx.MessageBox("Atributo de búsqueda no válido.", "Error", wx.OK | wx.ICON_ERROR)
+                return
+
+            consulta_sql = f"SELECT * FROM Usuario WHERE {columna} LIKE ?"
+            valor_busqueda = f"%{texto_busqueda}%"
+
+        # Conectar a la base de datos y ejecutar la consulta
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+        try:
+            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")  # Depuración
+            if valor_busqueda:
+                cursor.execute(consulta_sql, (valor_busqueda,))
+            else:
+                cursor.execute(consulta_sql)
+            resultados = cursor.fetchall()
+            print(f"Resultados obtenidos: {resultados}")  # Depuración
+
+            if resultados:
+                # Tomar el primer resultado (asumiendo que es único)
+                usuario = resultados[0]
+
+                # Asumimos que los campos en la base de datos son:
+                # usuario_id, nombre, apellido, email, password, telefono, direccion, tipo
+                usuario_id, nombre, apellido, email, password, telefono, direccion, tipo = usuario
+
+                # Cargar la información en los TextCtrl
+                self.m_textCtrl18.SetValue(str(usuario_id))  # Identificación
+                self.m_textCtrl181.SetValue(nombre)  # Nombre
+                self.m_textCtrl1811.SetValue(email)  # Email
+
+                # Manejo del tipo
+                if tipo == 'administrador':
+                    self.m_checkBox2.SetValue(True)
+                    self.m_checkBox21.SetValue(False)
+                elif tipo == 'cliente':
+                    self.m_checkBox2.SetValue(False)
+                    self.m_checkBox21.SetValue(True)
+                else:
+                    self.m_checkBox2.SetValue(False)
+                    self.m_checkBox21.SetValue(False)
+
+            else:
+                wx.MessageBox("No se encontraron resultados.", "Información", wx.OK | wx.ICON_INFORMATION)
+                # Limpiar los campos si no hay resultados
+                self.m_textCtrl18.SetValue("")
+                self.m_textCtrl181.SetValue("")
+                self.m_textCtrl1811.SetValue("")
+                self.m_checkBox2.SetValue(False)
+                self.m_checkBox21.SetValue(False)
+
+        except sqlite3.OperationalError as e:
+            wx.MessageBox(f"Error en la consulta SQL: {e}", "Error", wx.OK | wx.ICON_ERROR)
+        finally:
+            conn.close()
 
     def cerrar_asign_admin(self, event):
-        event.Skip()
+        self.Close()
 
     def confirmar_admin(self, event):
-        event.Skip()
+        # Aquí puedes implementar la lógica para confirmar los cambios
+        wx.MessageBox("Usuario confirmado", "Confirmación", wx.OK | wx.ICON_INFORMATION)
+        # Por ejemplo, guardar los cambios en la base de datos o realizar otras acciones
+
+    def actualizar_tipo_usuario(self, event):
+        # Verifica qué checkbox está marcado
+        if self.m_checkBox2.GetValue():
+            tipo = 'administrador'
+        elif self.m_checkBox21.GetValue():
+            tipo = 'cliente'
+        else:
+            return  # Ningún checkbox está seleccionado, no hacer nada
+
+        # Obtén el ID del usuario actualmente seleccionado
+        usuario_id = self.m_textCtrl18.GetValue()
+
+        if not usuario_id:
+            wx.MessageBox("Debe buscar un usuario primero.", "Advertencia", wx.OK | wx.ICON_WARNING)
+            return
+
+        # Actualiza el tipo en la base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE Usuario SET tipo = ? WHERE usuario_id = ?", (tipo, usuario_id))
+            conn.commit()
+            wx.MessageBox(f"Tipo de usuario actualizado a {tipo}.", "Confirmación", wx.OK | wx.ICON_INFORMATION)
+        except sqlite3.OperationalError as e:
+            wx.MessageBox(f"Error al actualizar el tipo de usuario: {e}", "Error", wx.OK | wx.ICON_ERROR)
+        finally:
+            conn.close()
+
+

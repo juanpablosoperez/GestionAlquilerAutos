@@ -189,6 +189,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetColLabelValue(5, u"Disponibilidad")
         self.m_grid2.SetColLabelValue(6, u"Matrícula")
         self.m_grid2.SetColLabelValue(7, u"Color")
+        self.m_grid2.SetColLabelValue(8, u"Tipo")
         self.m_grid2.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Rows
