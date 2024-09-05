@@ -1,6 +1,6 @@
 import wx
 import wx.grid
-
+import sqlite3
 ###########################################################################
 ## Class VerReservasUsuarios
 ###########################################################################
@@ -159,15 +159,105 @@ class VerReservasUsuarios(wx.Frame):
     def __del__(self):
         pass
 
+
+
     # Virtual event handlers, override them in your derived class
     def buscar_auto(self, event):
-        event.Skip()
+
+        # Diccionario con consultas para las diferentes tablas y campos
+        consultas = {
+            "ID_Reserva": "SELECT * FROM Reserva WHERE reserva_id LIKE ?",
+            "ID_Usuario": "SELECT * FROM Usuario WHERE usuario_id LIKE ?",
+            "Nombre_Usuario": "SELECT * FROM Usuario WHERE nombre LIKE ?",
+            "Apellido_Usuario": "SELECT * FROM Usuario WHERE apellido LIKE ?",
+            "ID_Vehiculo": "SELECT * FROM Vehiculo WHERE vehiculo_id LIKE ?",
+            "Fecha de Inicio": "SELECT * FROM Reserva WHERE fecha_inicio LIKE ?",
+            "Fecha de Fin": "SELECT * FROM Reserva WHERE fecha_fin LIKE ?",
+            "Estado": "SELECT * FROM Reserva WHERE estado LIKE ?",
+            "Precio_Total": "SELECT * FROM Reserva WHERE precio_total LIKE ?"
+        }
+
+        # Obtener el campo seleccionado en el ChoiceBox
+        campo_busqueda = self.m_choice1.GetStringSelection()
+
+        # Obtener el valor ingresado en el campo de búsqueda
+        valor_busqueda = self.m_searchCtrl1.GetValue()
+
+        # Verificar que el campo seleccionado tenga una consulta válida
+        if campo_busqueda not in consultas:
+            wx.MessageBox("Por favor, seleccione un campo válido para la búsqueda.", "Error", wx.ICON_ERROR)
+            return
+
+        # Si el valor de búsqueda está vacío, no hacemos nada
+        if valor_busqueda == "":
+            wx.MessageBox("Por favor, ingrese un valor para la búsqueda.", "Error", wx.ICON_ERROR)
+            return
+
+        # Obtener la consulta SQL del diccionario según el campo de búsqueda
+        consulta = consultas[campo_busqueda]
+
+        # Conectar a la base de datos y realizar la consulta
+        try:
+            # Conectar a la base de datos
+            conn = sqlite3.connect('gestion_alquiler_autos.db')  # Cambia esto a tu base de datos
+            cursor = conn.cursor()
+
+            # Ejecutar la consulta con el valor ingresado
+            cursor.execute(consulta, ('%' + valor_busqueda + '%',))
+            resultados = cursor.fetchall()
+
+            # Mostrar los resultados en la grilla
+            self.mostrar_resultados_en_grilla(resultados)
+
+            # Cerrar la conexión
+            cursor.close()
+            conn.close()
+
+        except Exception as e:
+            wx.MessageBox(f"Error al realizar la búsqueda: {e}", "Error", wx.ICON_ERROR)
 
     def refrescar_busqueda(self, event):
-        event.Skip()
+        # Limpiar el campo de búsqueda
+        self.m_searchCtrl1.SetValue("")
 
-    def seleccionar_vehiculo(self, event):
-        event.Skip()
+        # Restablecer el ChoiceBox al valor por defecto ("Seleccionar")
+        self.m_choice1.SetSelection(0)
+
+        # Limpiar la grilla
+        self.limpiar_grilla()
+
+    def limpiar_grilla(self):
+        # Recorrer todas las celdas de la grilla y limpiarlas
+        num_filas = self.m_grid3.GetNumberRows()
+        num_columnas = self.m_grid3.GetNumberCols()
+
+        for fila in range(num_filas):
+            for columna in range(num_columnas):
+                self.m_grid3.SetCellValue(fila, columna, "")
+
+        # Opcional: Auto-ajustar el tamaño de las columnas y filas
+        self.m_grid3.AutoSizeColumns()
+        self.m_grid3.AutoSizeRows()
+
+    def mostrar_resultados_en_grilla(self, resultados):
+        # Limpiar la grilla antes de insertar nuevos datos
+        self.m_grid3.ClearGrid()
+
+        # Si hay más filas en los resultados que en la grilla, agregar filas
+        if len(resultados) > self.m_grid3.GetNumberRows():
+            self.m_grid3.AppendRows(len(resultados) - self.m_grid3.GetNumberRows())
+
+        # Mostrar los datos en la grilla
+        for fila, reserva in enumerate(resultados):
+            for columna, dato in enumerate(reserva):
+                self.m_grid3.SetCellValue(fila, columna, str(dato))
+
+        # Ajustar el tamaño de las columnas y las filas
+        self.m_grid3.AutoSizeColumns()
+        self.m_grid3.AutoSizeRows()
 
     def cerrar_asign_admin(self, event):
-        event.Skip()
+        self.Close()
+
+    def seleccionar_vehiculo(self,event):
+        pass

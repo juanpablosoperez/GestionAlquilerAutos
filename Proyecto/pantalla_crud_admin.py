@@ -335,7 +335,20 @@ class RegistroAlquiler(wx.Frame):
     def on_eliminar_click(self, event):
         if hasattr(self, 'id_vehiculo_seleccionado'):
             id_vehiculo = self.id_vehiculo_seleccionado
-            self.eliminar_auto(id_vehiculo)
+
+            # Crear el cuadro de diálogo de confirmación
+            mensaje = f"¿Estás seguro de que deseas eliminar el vehículo con ID {id_vehiculo}?"
+            dialogo_confirmacion = wx.MessageDialog(self, mensaje, "Confirmar Eliminación",
+                                                    wx.YES_NO | wx.ICON_QUESTION)
+
+            # Mostrar el cuadro de diálogo y obtener la respuesta del usuario
+            respuesta = dialogo_confirmacion.ShowModal()
+
+            # Si el usuario selecciona "Sí", proceder con la eliminación
+            if respuesta == wx.ID_YES:
+                self.eliminar_auto(id_vehiculo)
+            else:
+                wx.MessageBox("Eliminación cancelada.", "Información", wx.OK | wx.ICON_INFORMATION)
         else:
             wx.MessageBox("No hay un registro seleccionado para eliminar.", "Error", wx.OK | wx.ICON_ERROR)
 

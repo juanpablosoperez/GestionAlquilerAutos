@@ -157,12 +157,29 @@ class AsignarAdmin(wx.Frame):
         # Bind events
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_usuario)
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_asign_admin)
+        self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_pantalla)
         self.m_button5.Bind(wx.EVT_BUTTON, self.confirmar_admin)
         self.m_checkBox2.Bind(wx.EVT_CHECKBOX, self.actualizar_tipo_usuario)
         self.m_checkBox21.Bind(wx.EVT_CHECKBOX, self.actualizar_tipo_usuario)
 
     def __del__(self):
         pass
+
+    def refrescar_pantalla(self, event):
+        # Limpiar los TextCtrl (ID, Nombre, Email)
+        self.m_textCtrl18.SetValue("")  # Limpiar campo de Identificación
+        self.m_textCtrl181.SetValue("")  # Limpiar campo de Nombre
+        self.m_textCtrl1811.SetValue("")  # Limpiar campo de Correo
+
+        # Limpiar el SearchCtrl (Campo de búsqueda)
+        self.m_searchCtrl1.SetValue("")  # Limpiar el campo de búsqueda
+
+        # Reiniciar el ChoiceBox (Buscar por)
+        self.m_choice1.SetSelection(0)  # Seleccionar el valor por defecto "Seleccionar"
+
+        # Desmarcar los CheckBox (Administrador y Cliente)
+        self.m_checkBox2.SetValue(False)  # Desmarcar Administrador
+        self.m_checkBox21.SetValue(False)  # Desmarcar Cliente
 
     def buscar_usuario(self, event):
         # Obtener el atributo seleccionado del ChoiceBox
@@ -242,9 +259,7 @@ class AsignarAdmin(wx.Frame):
         self.Close()
 
     def confirmar_admin(self, event):
-        # Aquí puedes implementar la lógica para confirmar los cambios
         wx.MessageBox("Usuario confirmado", "Confirmación", wx.OK | wx.ICON_INFORMATION)
-        # Por ejemplo, guardar los cambios en la base de datos o realizar otras acciones
 
     def actualizar_tipo_usuario(self, event):
         # Verifica qué checkbox está marcado
