@@ -10,7 +10,7 @@ class VerReservasUsuarios(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Reservas de Usuarios", pos=wx.DefaultPosition,
-                          size=wx.Size(780, 400), style=estilo)
+                          size=wx.Size(690, 400), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -53,7 +53,7 @@ class VerReservasUsuarios(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID_Reserva", u"ID_Usuario", u"ID_Vehiculo", u"Nombre_Usuario",
+        m_choice1Choices = [u"Seleccionar", u"ID_Reserva", u"Nombre_Usuario",
                             u"Apellido_Usuario", u"Fecha de Inicio", u"Fecha de Fin", u"Estado", u"Precio_Total"]
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
@@ -95,22 +95,21 @@ class VerReservasUsuarios(wx.Frame):
         self.m_grid3 = wx.grid.Grid(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
         # Grid
-        self.m_grid3.CreateGrid(8, 9)
+        self.m_grid3.CreateGrid(8, 8)
         self.m_grid3.EnableEditing(False)
         self.m_grid3.EnableGridLines(True)  # Enabling grid lines
         self.m_grid3.EnableDragGridSize(False)
         self.m_grid3.SetMargins(0, 0)
 
-        # Columns
         self.m_grid3.SetColLabelValue(0, u"ID Reserva")
         self.m_grid3.SetColLabelValue(1, u"ID Usuario")
         self.m_grid3.SetColLabelValue(2, u"Nombre")
         self.m_grid3.SetColLabelValue(3, u"Apellido")
-        self.m_grid3.SetColLabelValue(4, u"ID Vehículo")
-        self.m_grid3.SetColLabelValue(5, u"Fecha de Inicio")
-        self.m_grid3.SetColLabelValue(6, u"Fecha de Fin")
-        self.m_grid3.SetColLabelValue(7, u"Precio Total")
-        self.m_grid3.SetColLabelValue(8, u"Estado")
+        self.m_grid3.SetColLabelValue(4, u"Fecha de Inicio")
+        self.m_grid3.SetColLabelValue(5, u"Fecha de Fin")
+        self.m_grid3.SetColLabelValue(6, u"Precio Total")
+        self.m_grid3.SetColLabelValue(7, u"Estado")
+
         self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Auto-size columns to fit content
@@ -151,30 +150,58 @@ class VerReservasUsuarios(wx.Frame):
         self.Centre(wx.BOTH)
 
         # Connect Events
-        self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
+        self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_reserva)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
-        self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_vehiculo)
+        self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_reserva)
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_asign_admin)
 
     def __del__(self):
         pass
 
-
-
     # Virtual event handlers, override them in your derived class
-    def buscar_auto(self, event):
-
+    def buscar_reserva(self, event):
         # Diccionario con consultas para las diferentes tablas y campos
         consultas = {
-            "ID_Reserva": "SELECT * FROM Reserva WHERE reserva_id LIKE ?",
-            "ID_Usuario": "SELECT * FROM Usuario WHERE usuario_id LIKE ?",
-            "Nombre_Usuario": "SELECT * FROM Usuario WHERE nombre LIKE ?",
-            "Apellido_Usuario": "SELECT * FROM Usuario WHERE apellido LIKE ?",
-            "ID_Vehiculo": "SELECT * FROM Vehiculo WHERE vehiculo_id LIKE ?",
-            "Fecha de Inicio": "SELECT * FROM Reserva WHERE fecha_inicio LIKE ?",
-            "Fecha de Fin": "SELECT * FROM Reserva WHERE fecha_fin LIKE ?",
-            "Estado": "SELECT * FROM Reserva WHERE estado LIKE ?",
-            "Precio_Total": "SELECT * FROM Reserva WHERE precio_total LIKE ?"
+            "ID_Reserva": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE r.reserva_id LIKE ?"
+            ),
+            "ID_Usuario": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE u.usuario_id LIKE ?"
+            ),
+            "Nombre_Usuario": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE u.nombre LIKE ?"
+            ),
+            "Apellido_Usuario": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE u.apellido LIKE ?"
+            ),
+            "Fecha de Inicio": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE r.fecha_inicio LIKE ?"
+            ),
+            "Fecha de Fin": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE r.fecha_fin LIKE ?"
+            ),
+            "Estado": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE r.estado LIKE ?"
+            ),
+            "Precio_Total": (
+                "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                "WHERE r.precio_total LIKE ?"
+            )
         }
 
         # Obtener el campo seleccionado en el ChoiceBox
@@ -183,30 +210,35 @@ class VerReservasUsuarios(wx.Frame):
         # Obtener el valor ingresado en el campo de búsqueda
         valor_busqueda = self.m_searchCtrl1.GetValue()
 
-        # Verificar que el campo seleccionado tenga una consulta válida
-        if campo_busqueda not in consultas:
-            wx.MessageBox("Por favor, seleccione un campo válido para la búsqueda.", "Error", wx.ICON_ERROR)
-            return
-
-        # Si el valor de búsqueda está vacío, no hacemos nada
-        if valor_busqueda == "":
-            wx.MessageBox("Por favor, ingrese un valor para la búsqueda.", "Error", wx.ICON_ERROR)
-            return
-
-        # Obtener la consulta SQL del diccionario según el campo de búsqueda
-        consulta = consultas[campo_busqueda]
-
-        # Conectar a la base de datos y realizar la consulta
+        # Conectar a la base de datos
         try:
-            # Conectar a la base de datos
-            conn = sqlite3.connect('gestion_alquiler_autos.db')  # Cambia esto a tu base de datos
+            conn = sqlite3.connect('gestion_alquiler_autos.db')
             cursor = conn.cursor()
 
-            # Ejecutar la consulta con el valor ingresado
-            cursor.execute(consulta, ('%' + valor_busqueda + '%',))
+            # Si no se selecciona ningún campo o se selecciona "Seleccionar", mostrar todos los registros
+            if campo_busqueda == "Seleccionar" or valor_busqueda == "":
+                consulta = (
+                    "SELECT r.reserva_id, u.usuario_id, u.nombre, u.apellido, r.fecha_inicio, r.fecha_fin, r.precio_total, r.estado "
+                    "FROM Reserva r JOIN Usuario u ON r.usuario_id = u.usuario_id "
+                    "ORDER BY r.reserva_id"
+                )
+                cursor.execute(consulta)
+            else:
+                # Verificar que el campo seleccionado tenga una consulta válida
+                if campo_busqueda not in consultas:
+                    wx.MessageBox("Por favor, seleccione un campo válido para la búsqueda.", "Error", wx.ICON_ERROR)
+                    return
+
+                # Obtener la consulta SQL del diccionario según el campo de búsqueda
+                consulta = consultas[campo_busqueda]
+
+                # Ejecutar la consulta con el valor ingresado
+                cursor.execute(consulta, ('%' + valor_busqueda + '%',))
+
+            # Obtener resultados
             resultados = cursor.fetchall()
 
-            # Mostrar los resultados en la grilla
+        # Mostrar los resultados en la grilla
             self.mostrar_resultados_en_grilla(resultados)
 
             # Cerrar la conexión
@@ -215,6 +247,7 @@ class VerReservasUsuarios(wx.Frame):
 
         except Exception as e:
             wx.MessageBox(f"Error al realizar la búsqueda: {e}", "Error", wx.ICON_ERROR)
+
 
     def refrescar_busqueda(self, event):
         # Limpiar el campo de búsqueda
@@ -259,5 +292,5 @@ class VerReservasUsuarios(wx.Frame):
     def cerrar_asign_admin(self, event):
         self.Close()
 
-    def seleccionar_vehiculo(self,event):
+    def seleccionar_reserva(self,event):
         pass

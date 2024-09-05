@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para asignar el rol administrador al cliente que sea, o viceversa.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios.">
       <change afterPath="$PROJECT_DIR$/Proyecto/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/asignar_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -369,7 +366,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725312730766</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios.">
+      <option name="closed" value="true" />
+      <created>1725571237240</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725571237240</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -401,6 +406,7 @@
     <MESSAGE value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
     <MESSAGE value="Funcionalidad de modificacion, eliminacion y agregacion de vehiculos." />
     <MESSAGE value="Funcionalidad para asignar el rol administrador al cliente que sea, o viceversa." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para asignar el rol administrador al cliente que sea, o viceversa." />
+    <MESSAGE value="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios." />
   </component>
 </project>
