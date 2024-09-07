@@ -14,7 +14,7 @@ class RegistroAlquiler(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"CRUD - GESTIÓN DE VEHÍCULOS",
-                          pos=wx.DefaultPosition, size=wx.Size(755, 600),
+                          pos=wx.DefaultPosition, size=wx.Size(700, 600),
                           style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
@@ -189,6 +189,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetColLabelValue(5, u"Disponibilidad")
         self.m_grid2.SetColLabelValue(6, u"Matrícula")
         self.m_grid2.SetColLabelValue(7, u"Color")
+        self.m_grid2.SetColLabelValue(8, u"Tipo")
         self.m_grid2.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Rows
@@ -203,7 +204,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetRowSize(8, 16)
         self.m_grid2.AutoSizeRows()
         self.m_grid2.EnableDragRowSize(True)
-        self.m_grid2.SetRowLabelSize(80)
+        self.m_grid2.SetRowLabelSize(20)
         self.m_grid2.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance
@@ -334,7 +335,20 @@ class RegistroAlquiler(wx.Frame):
     def on_eliminar_click(self, event):
         if hasattr(self, 'id_vehiculo_seleccionado'):
             id_vehiculo = self.id_vehiculo_seleccionado
-            self.eliminar_auto(id_vehiculo)
+
+            # Crear el cuadro de diálogo de confirmación
+            mensaje = f"¿Estás seguro de que deseas eliminar el vehículo con ID {id_vehiculo}?"
+            dialogo_confirmacion = wx.MessageDialog(self, mensaje, "Confirmar Eliminación",
+                                                    wx.YES_NO | wx.ICON_QUESTION)
+
+            # Mostrar el cuadro de diálogo y obtener la respuesta del usuario
+            respuesta = dialogo_confirmacion.ShowModal()
+
+            # Si el usuario selecciona "Sí", proceder con la eliminación
+            if respuesta == wx.ID_YES:
+                self.eliminar_auto(id_vehiculo)
+            else:
+                wx.MessageBox("Eliminación cancelada.", "Información", wx.OK | wx.ICON_INFORMATION)
         else:
             wx.MessageBox("No hay un registro seleccionado para eliminar.", "Error", wx.OK | wx.ICON_ERROR)
 

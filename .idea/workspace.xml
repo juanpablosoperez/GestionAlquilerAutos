@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad de busqueda avanzada y eliminacion de registros.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/Proyecto/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/mis_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
       <recent name="C:\Users\JUAMPI\Documentos\Proyectos\gestionAlquilerAutos\DataGenerators" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (5)">
+  <component name="RunManager" selected="Python.main (2)">
     <configuration name="main (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
@@ -120,6 +120,28 @@
       <method v="2" />
     </configuration>
     <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="gestionAlquilerAutos" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (3)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="gestionAlquilerAutos" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -185,35 +207,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="gestionAlquilerAutos" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Proyecto" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Proyecto/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main (5)" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.main (2)" />
         <item itemvalue="Python.main (4)" />
         <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.main (3)" />
+        <item itemvalue="Python.main (5)" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +353,39 @@
       <option name="project" value="LOCAL" />
       <updated>1725114089004</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Funcionalidad de modificacion, eliminacion y agregacion de vehiculos.">
+      <option name="closed" value="true" />
+      <created>1725116356329</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1725116356329</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Funcionalidad para asignar el rol administrador al cliente que sea, o viceversa.">
+      <option name="closed" value="true" />
+      <created>1725312730766</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1725312730766</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios.">
+      <option name="closed" value="true" />
+      <created>1725571237240</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725571237240</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Funcionalidad para ver reservas de los usuarios">
+      <option name="closed" value="true" />
+      <created>1725574428544</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1725574428544</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -383,6 +415,10 @@
     <MESSAGE value="Funcionalidad para que segun el rol que inicia sesion, tenga una pantalla distinta y distintas opciones de menu." />
     <MESSAGE value="Funcionalidad para que si un usuario se registra le llegue el mail de confirmacion." />
     <MESSAGE value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad de busqueda avanzada y eliminacion de registros." />
+    <MESSAGE value="Funcionalidad de modificacion, eliminacion y agregacion de vehiculos." />
+    <MESSAGE value="Funcionalidad para asignar el rol administrador al cliente que sea, o viceversa." />
+    <MESSAGE value="Funcionalidad para asignar admin con boton refrescar datos, popup antes de eliminar, y pantalla ver reservas de usuarios." />
+    <MESSAGE value="Funcionalidad para ver reservas de los usuarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para ver reservas de los usuarios" />
   </component>
 </project>
