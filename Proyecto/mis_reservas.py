@@ -126,7 +126,7 @@ class MisReservas(wx.Frame):
         # Rows
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
-        self.m_grid3.SetRowLabelSize(80)
+        self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance

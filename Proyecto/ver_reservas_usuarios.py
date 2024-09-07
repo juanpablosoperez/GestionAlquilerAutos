@@ -10,7 +10,7 @@ class VerReservasUsuarios(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Reservas de Usuarios", pos=wx.DefaultPosition,
-                          size=wx.Size(690, 400), style=estilo)
+                          size=wx.Size(600, 400), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -118,7 +118,7 @@ class VerReservasUsuarios(wx.Frame):
         # Rows
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
-        self.m_grid3.SetRowLabelSize(100)
+        self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance

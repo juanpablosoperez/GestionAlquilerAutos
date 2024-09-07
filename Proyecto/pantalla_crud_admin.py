@@ -14,7 +14,7 @@ class RegistroAlquiler(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"CRUD - GESTIÓN DE VEHÍCULOS",
-                          pos=wx.DefaultPosition, size=wx.Size(755, 600),
+                          pos=wx.DefaultPosition, size=wx.Size(700, 600),
                           style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
@@ -204,7 +204,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetRowSize(8, 16)
         self.m_grid2.AutoSizeRows()
         self.m_grid2.EnableDragRowSize(True)
-        self.m_grid2.SetRowLabelSize(80)
+        self.m_grid2.SetRowLabelSize(20)
         self.m_grid2.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance
