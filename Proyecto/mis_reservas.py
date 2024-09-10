@@ -52,7 +52,7 @@ class MisReservas(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID", u"Fecha de Inicio", u"Fecha de Fin", u"Estado"]
+        m_choice1Choices = [u"Seleccionar",u"Fecha de Inicio", u"Fecha de Fin", u"Estado"]
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
         fgSizer4.Add(self.m_choice1, 0, wx.ALL, 5)
@@ -102,7 +102,7 @@ class MisReservas(wx.Frame):
         self.m_grid3 = wx.grid.Grid(self.m_grid_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
         # Grid
-        self.m_grid3.CreateGrid(8, 7)
+        self.m_grid3.CreateGrid(8, 6)
         self.m_grid3.EnableEditing(False)
         self.m_grid3.EnableGridLines(True)
         self.m_grid3.EnableDragGridSize(False)
@@ -110,13 +110,12 @@ class MisReservas(wx.Frame):
 
         # Columns
         self.m_grid3.SetColLabelValue(0, u"ID Reserva")
-        self.m_grid3.SetColLabelValue(1, u"ID Vehículo")
-        self.m_grid3.SetColLabelValue(2, u"Marca")
-        self.m_grid3.SetColLabelValue(3, u"Modelo")
-        self.m_grid3.SetColLabelValue(4, u"Fecha de Inicio")
-        self.m_grid3.SetColLabelValue(5, u"Fecha de Fin")
-        self.m_grid3.SetColLabelValue(6, u"Precio Total")
-        self.m_grid3.SetColLabelValue(7, u"Estado")
+        self.m_grid3.SetColLabelValue(1, u"Marca")
+        self.m_grid3.SetColLabelValue(2, u"Modelo")
+        self.m_grid3.SetColLabelValue(3, u"Fecha de Inicio")
+        self.m_grid3.SetColLabelValue(4, u"Fecha de Fin")
+        self.m_grid3.SetColLabelValue(5, u"Precio Total")
+        self.m_grid3.SetColLabelValue(6, u"Estado")
         self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Ajuste de tamaño de columnas
@@ -140,12 +139,12 @@ class MisReservas(wx.Frame):
         self.m_grid3.Enable(False)
 
         grid_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        grid_sizer.Add(self.m_grid3, 1, wx.EXPAND | wx.ALL, 5)
+        grid_sizer.Add(self.m_grid3, 1,wx.ALIGN_CENTRE | wx.ALL, 5)
         self.m_grid_panel.SetSizer(grid_sizer)
 
         fgSizer31.Add(self.m_grid_panel, 1, wx.EXPAND, 5)
 
-        sbSizer22.Add(fgSizer31, 1, wx.EXPAND, 5)
+        sbSizer22.Add(fgSizer31, 1,wx.ALIGN_CENTRE  | wx.ALL, 5)
 
         bSizer114.Add(sbSizer22, 1, wx.EXPAND, 5)
 
@@ -166,18 +165,24 @@ class MisReservas(wx.Frame):
         self.Layout()
         self.Centre(wx.BOTH)
 
+        # Connect Events
+        self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_reserva)
+        self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
+        self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_reserva)
+        self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
+
     def __del__(self):
         pass
 
     # Virtual event handlers, overide them in your derived class
-    def buscar_auto(self, event):
+    def buscar_reserva(self, event):
         event.Skip()
 
     def refrescar_busqueda(self, event):
         event.Skip()
 
-    def seleccionar_vehiculo(self, event):
+    def seleccionar_reserva(self, event):
         event.Skip()
 
-    def cerrar_asign_admin(self, event):
-        event.Skip()
+    def cerrar_sesion(self, event):
+        self.Close()

@@ -14,7 +14,7 @@ class PantallaPrincipalUsuario(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal", pos=wx.DefaultPosition,
-                          size=wx.Size(700, 530), style=estilo)
+                          size=wx.Size(700, 500), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -66,7 +66,7 @@ class PantallaPrincipalUsuario(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID", u"Marca", u"Modelo", u"Disponibilidad", u"Precio por Día"]
+        m_choice1Choices = [u"Seleccionar", u"Marca", u"Modelo", u"Disponibilidad", u"Precio por Día"]
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
         fgSizer4.Add(self.m_choice1, 0, wx.ALL, 5)
@@ -131,7 +131,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         # Rows
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
-        self.m_grid3.SetRowLabelSize(80)
+        self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance
