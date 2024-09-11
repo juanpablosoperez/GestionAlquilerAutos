@@ -11,7 +11,8 @@ from ver_detalle import VerDetalle
 
 class PantallaPrincipalUsuario(wx.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, user_id):
+        self.user_id = user_id
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal", pos=wx.DefaultPosition,
                           size=wx.Size(700, 500), style=estilo)
@@ -135,14 +136,14 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Label Appearance
-        self.m_grid3.SetLabelBackgroundColour(wx.Colour(60, 60, 60))
+        self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
         # Cell Defaults
         self.m_grid3.SetDefaultCellFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
         self.m_grid3.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         self.m_grid3.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-        self.m_grid3.Enable(False)
+        self.m_grid3.Enable(True)
 
         sbSizer9.Add(self.m_grid3, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
@@ -187,7 +188,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         event.Skip()
 
     def ver_mis_reservas(self,event):
-        mis_reservas = MisReservas(None)
+        mis_reservas = MisReservas(None, user_id=self.user_id)
         mis_reservas.Show()
 
     def ver_detalle(self, event):

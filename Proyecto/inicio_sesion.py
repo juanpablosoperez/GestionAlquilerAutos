@@ -129,14 +129,16 @@ class InicioSesion(wx.Frame):
 
         if self.verificar_credenciales(usuario, contrasena):
             wx.MessageBox('Inicio de sesión exitoso', 'Info', wx.OK | wx.ICON_INFORMATION)
-
+            user_id = self.obtener_user_id(usuario)  # Obtener el user_id del usuario
             rol = self.obtener_rol_usuario(usuario)
             if rol == 'administrador':
                 # Aquí abres la ventana correspondiente al administrador
                 self.abrir_ventana_administrador()
             elif rol == 'cliente':
                 # Aquí abres la ventana correspondiente al cliente
-                self.abrir_ventana_cliente()
+                self.abrir_ventana_cliente(user_id)
+
+
         else:
             wx.MessageBox('Usuario o contraseña incorrectos', 'Error', wx.OK | wx.ICON_ERROR)
 
@@ -169,8 +171,19 @@ class InicioSesion(wx.Frame):
         ventana_admin = PantallaPrincipalAdministrador(None)
         ventana_admin.Show()
         self.Close()
-    def abrir_ventana_cliente(self):
-        ventana_cliente = PantallaPrincipalUsuario(None)
+    def abrir_ventana_cliente(self, user_id):
+        ventana_cliente = PantallaPrincipalUsuario(None,user_id)
         ventana_cliente.Show()
         self.Close()
 
+    def obtener_user_id(self, usuario):
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        query = "SELECT usuario_id FROM Usuario WHERE nombre=?"
+        cursor.execute(query, (usuario,))
+        user_id = cursor.fetchone()[0]
+
+        conn.close()
+
+        return user_id
