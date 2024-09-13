@@ -95,15 +95,15 @@ class ReservaVehiculo(wx.Frame):
         self.Centre(wx.BOTH)
 
         # Connect Events
-        self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_asign_admin)
+        self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button41.Bind(wx.EVT_BUTTON, self.confirmar_reserva)
 
     def __del__(self):
         pass
 
     # Virtual event handlers, overide them in your derived class
-    def cerrar_asign_admin(self, event):
-        event.Skip()
+    def cerrar_sesion(self, event):
+        self.Close()
 
     def confirmar_reserva(self, event):
         event.Skip()

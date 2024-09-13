@@ -7,7 +7,7 @@ from reserva_vehiculo import ReservaVehiculo
 
 class VerDetalle(wx.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Detalle del Vehículo", pos=wx.DefaultPosition,
                           size=wx.Size(400, 440), style=estilo)
@@ -16,7 +16,6 @@ class VerDetalle(wx.Frame):
         icon = wx.Icon(
             u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
             wx.BITMAP_TYPE_PNG)
-
         self.SetIcon(icon)
 
         bSizer28 = wx.BoxSizer(wx.VERTICAL)
@@ -34,94 +33,84 @@ class VerDetalle(wx.Frame):
         fgSizer11.SetFlexibleDirection(wx.BOTH)
         fgSizer11.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
 
-        self.m_staticText55 = wx.StaticText(self, wx.ID_ANY, u"ID del Vehículo:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Marca
+        self.m_staticText55 = wx.StaticText(self, wx.ID_ANY, u"Marca:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55.Wrap(-1)
         self.m_staticText55.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText55, 0, wx.ALL, 5)
 
-        self.m_textCtrl24 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl24 = wx.TextCtrl(self, wx.ID_ANY, marca, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl24.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl24, 0, wx.ALL, 5)
 
-        self.m_staticText551 = wx.StaticText(self, wx.ID_ANY, u"Marca:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Modelo
+        self.m_staticText551 = wx.StaticText(self, wx.ID_ANY, u"Modelo:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551.Wrap(-1)
         self.m_staticText551.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText551, 0, wx.ALL, 5)
 
-        self.m_textCtrl241 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl241 = wx.TextCtrl(self, wx.ID_ANY, modelo, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl241.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl241, 0, wx.ALL, 5)
 
-        self.m_staticText5511 = wx.StaticText(self, wx.ID_ANY, u"Modelo:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Año
+        self.m_staticText5511 = wx.StaticText(self, wx.ID_ANY, u"Año:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText5511.Wrap(-1)
         self.m_staticText5511.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText5511, 0, wx.ALL, 5)
 
-        self.m_textCtrl2411 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl2411 = wx.TextCtrl(self, wx.ID_ANY, str(anio), wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl2411.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl2411, 0, wx.ALL, 5)
 
-        self.m_staticText55111 = wx.StaticText(self, wx.ID_ANY, u"Año:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Precio por Día
+        self.m_staticText55111 = wx.StaticText(self, wx.ID_ANY, u"Precio por Día:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55111.Wrap(-1)
         self.m_staticText55111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText55111, 0, wx.ALL, 5)
 
-        self.m_textCtrl24111 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl24111 = wx.TextCtrl(self, wx.ID_ANY, precio_por_dia, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl24111.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl24111, 0, wx.ALL, 5)
 
-        self.m_staticText551111 = wx.StaticText(self, wx.ID_ANY, u"Precio por Día:", wx.DefaultPosition, wx.DefaultSize,
-                                                0)
+        # Disponibilidad
+        self.m_staticText551111 = wx.StaticText(self, wx.ID_ANY, u"Disponibilidad:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551111.Wrap(-1)
         self.m_staticText551111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText551111, 0, wx.ALL, 5)
 
-        self.m_textCtrl241111 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl241111 = wx.TextCtrl(self, wx.ID_ANY, disponibilidad, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl241111.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl241111, 0, wx.ALL, 5)
 
-        self.m_staticText5511111 = wx.StaticText(self, wx.ID_ANY, u"Disponibilidad:", wx.DefaultPosition,
-                                                 wx.DefaultSize, 0)
+        # Matrícula
+        self.m_staticText5511111 = wx.StaticText(self, wx.ID_ANY, u"Matrícula:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText5511111.Wrap(-1)
         self.m_staticText5511111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText5511111, 0, wx.ALL, 5)
 
-        self.m_textCtrl2411111 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl2411111 = wx.TextCtrl(self, wx.ID_ANY, matricula, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl2411111.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl2411111, 0, wx.ALL, 5)
 
-        self.m_staticText55111111 = wx.StaticText(self, wx.ID_ANY, u"Matrícula:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Color
+        self.m_staticText55111111 = wx.StaticText(self, wx.ID_ANY, u"Color:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55111111.Wrap(-1)
         self.m_staticText55111111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText55111111, 0, wx.ALL, 5)
 
-        self.m_textCtrl24111111 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl24111111 = wx.TextCtrl(self, wx.ID_ANY, color, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl24111111.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl24111111, 0, wx.ALL, 5)
 
-        self.m_staticText551111111 = wx.StaticText(self, wx.ID_ANY, u"Color:", wx.DefaultPosition, wx.DefaultSize, 0)
+        # Tipo
+        self.m_staticText551111111 = wx.StaticText(self, wx.ID_ANY, u"Tipo:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551111111.Wrap(-1)
         self.m_staticText551111111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-
         fgSizer11.Add(self.m_staticText551111111, 0, wx.ALL, 5)
 
-        self.m_textCtrl241111111 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl241111111 = wx.TextCtrl(self, wx.ID_ANY, tipo, wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_textCtrl241111111.Enable(False)
-
         fgSizer11.Add(self.m_textCtrl241111111, 0, wx.ALL, 5)
 
         sbSizer11.Add(fgSizer11, 0, wx.ALIGN_CENTER, 5)
@@ -152,16 +141,13 @@ class VerDetalle(wx.Frame):
         self.Centre(wx.BOTH)
 
         # Connect Events
-        self.m_button43.Bind(wx.EVT_BUTTON, self.salir_detalle)
-        self.m_button431.Bind(wx.EVT_BUTTON, self.reservar_auto)
+        self.m_button43.Bind(wx.EVT_BUTTON, self.cancelar)
+        self.m_button431.Bind(wx.EVT_BUTTON, self.reservar)
 
-    def __del__(self):
-        pass
+    def cancelar(self, event):
+        self.Close()
 
-    # Virtual event handlers, overide them in your derived class
-    def salir_detalle(self, event):
-        event.Skip()
+    def reservar(self, event):
+        reserva_vehiculo = ReservaVehiculo(None)
+        reserva_vehiculo.Show()
 
-    def reservar_auto(self, event):
-        reservar_vehiculo = ReservaVehiculo(None)
-        reservar_vehiculo.Show()
