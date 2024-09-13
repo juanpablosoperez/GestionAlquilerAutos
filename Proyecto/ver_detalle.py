@@ -148,6 +148,7 @@ class VerDetalle(wx.Frame):
         self.Close()
 
     def reservar(self, event):
-        reserva_vehiculo = ReservaVehiculo(None)
+        # Pasa el valor de precio_por_dia a la nueva ventana ReservaVehiculo
+        reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')))
         reserva_vehiculo.Show()
 

@@ -1,7 +1,6 @@
 import wx
 import wx.adv
-
-
+from datetime import datetime
 
 ###########################################################################
 ## Class ReservaVehiculo
@@ -9,7 +8,7 @@ import wx.adv
 
 class ReservaVehiculo(wx.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, precio_por_dia):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Reservar Vehículo", pos=wx.DefaultPosition,
                           size=wx.Size(400, 250), style=estilo)
@@ -20,6 +19,8 @@ class ReservaVehiculo(wx.Frame):
             wx.BITMAP_TYPE_PNG)
 
         self.SetIcon(icon)
+
+        self.precio_por_dia = precio_por_dia  # Guardar el precio por día
 
         bSizer29 = wx.BoxSizer(wx.VERTICAL)
 
@@ -42,8 +43,9 @@ class ReservaVehiculo(wx.Frame):
 
         fgSizer15.Add(self.m_staticText58, 0, wx.ALL, 5)
 
-        self.m_datePicker1 = wx.adv.DatePickerCtrl(self, wx.ID_ANY, wx.DefaultDateTime, wx.DefaultPosition, wx.DefaultSize,
-                                               wx.adv.DP_DROPDOWN)
+        self.m_datePicker1 = wx.adv.DatePickerCtrl(self, wx.ID_ANY, wx.DefaultDateTime, wx.DefaultPosition,
+                                                   wx.DefaultSize,
+                                                   wx.adv.DP_DROPDOWN)
         fgSizer15.Add(self.m_datePicker1, 0, wx.ALL, 5)
 
         self.m_staticText581 = wx.StaticText(self, wx.ID_ANY, u"Fecha de Fin:", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -52,8 +54,9 @@ class ReservaVehiculo(wx.Frame):
 
         fgSizer15.Add(self.m_staticText581, 0, wx.ALL, 5)
 
-        self.m_datePicker2 = wx.adv.DatePickerCtrl(self, wx.ID_ANY, wx.DefaultDateTime, wx.DefaultPosition, wx.DefaultSize,
-                                               wx.adv.DP_DROPDOWN)
+        self.m_datePicker2 = wx.adv.DatePickerCtrl(self, wx.ID_ANY, wx.DefaultDateTime, wx.DefaultPosition,
+                                                   wx.DefaultSize,
+                                                   wx.adv.DP_DROPDOWN)
         fgSizer15.Add(self.m_datePicker2, 0, wx.ALL, 5)
 
         self.m_staticText5811 = wx.StaticText(self, wx.ID_ANY, u"Precio Total:", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -97,13 +100,34 @@ class ReservaVehiculo(wx.Frame):
         # Connect Events
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button41.Bind(wx.EVT_BUTTON, self.confirmar_reserva)
+        self.m_datePicker1.Bind(wx.adv.EVT_DATE_CHANGED, self.calcular_precio)
+        self.m_datePicker2.Bind(wx.adv.EVT_DATE_CHANGED, self.calcular_precio)
 
     def __del__(self):
         pass
 
-    # Virtual event handlers, overide them in your derived class
     def cerrar_sesion(self, event):
         self.Close()
 
     def confirmar_reserva(self, event):
+        # Confirmar reserva logic here
         event.Skip()
+
+    def calcular_precio(self, event):
+        fecha_inicio = self.m_datePicker1.GetValue()
+        fecha_fin = self.m_datePicker2.GetValue()
+
+        if fecha_inicio.IsValid() and fecha_fin.IsValid():
+            delta = fecha_fin.Subtract(fecha_inicio)
+            num_dias = delta.GetDays()
+
+            if num_dias < 0:
+                wx.MessageBox("La fecha de fin debe ser después de la fecha de inicio.", "Error", wx.OK | wx.ICON_ERROR)
+                self.m_textCtrl32.SetValue("$")
+                return
+
+            monto_total = num_dias * self.precio_por_dia
+            self.m_textCtrl32.SetValue(f"${monto_total:.2f}")
+        else:
+            self.m_textCtrl32.SetValue("$")
+
