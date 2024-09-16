@@ -7,11 +7,13 @@ from reserva_vehiculo import ReservaVehiculo
 
 class VerDetalle(wx.Frame):
 
-    def __init__(self, parent, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo):
+    def __init__(self, parent, user_id, vehiculo_id, email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Detalle del Vehículo", pos=wx.DefaultPosition,
                           size=wx.Size(400, 440), style=estilo)
-
+        self.user_id = user_id
+        self.vehiculo_id = vehiculo_id
+        self.email = email
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
             u"C:/Users/JUAMPI/Documents/Desarrollo de Software/2DO AÑO D. SOFTWARE/Programacion I/Gestion de Alquiler Autos/iconos/gestion-de-proyectos.png",
@@ -148,7 +150,10 @@ class VerDetalle(wx.Frame):
         self.Close()
 
     def reservar(self, event):
+        vehiculo_id = self.vehiculo_id
+        email = self.email
         # Pasa el valor de precio_por_dia a la nueva ventana ReservaVehiculo
-        reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')))
+        reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')), self.user_id, vehiculo_id, email)
+        #print("id vehiculo: " + str(vehiculo_id))
         reserva_vehiculo.Show()
 

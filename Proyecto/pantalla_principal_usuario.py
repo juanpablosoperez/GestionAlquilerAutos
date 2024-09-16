@@ -11,8 +11,9 @@ from ver_detalle import VerDetalle
 
 class PantallaPrincipalUsuario(wx.Frame):
 
-    def __init__(self, parent, user_id):
+    def __init__(self, parent, user_id, email):
         self.user_id = user_id
+        self.email = email
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal", pos=wx.DefaultPosition,
                           size=wx.Size(700, 500), style=estilo)
@@ -278,7 +279,6 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_choice1.SetSelection(0)
 
     def seleccionar_auto(self, event):
-        # Obtener la fila seleccionada
         self.fila_seleccionada = self.m_grid3.GetGridCursorRow()
         event.Skip()
 
@@ -316,8 +316,9 @@ class PantallaPrincipalUsuario(wx.Frame):
                 vehiculo_id, matricula, color, tipo = vehiculo
 
                 # Mostrar la pantalla de detalles con la información del vehículo
-                ver_detalle = VerDetalle(None, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color,
+                ver_detalle = VerDetalle(None,self.user_id, vehiculo_id, self.email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color,
                                          tipo)
+                #print("Vehiculo_id: " + str(vehiculo_id))
                 ver_detalle.Show()
             else:
                 wx.MessageBox("No se pudieron obtener los detalles adicionales del vehículo.", "Error",

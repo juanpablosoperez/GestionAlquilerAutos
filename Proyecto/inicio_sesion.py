@@ -130,13 +130,14 @@ class InicioSesion(wx.Frame):
         if self.verificar_credenciales(usuario, contrasena):
             wx.MessageBox('Inicio de sesión exitoso', 'Info', wx.OK | wx.ICON_INFORMATION)
             user_id = self.obtener_user_id(usuario)  # Obtener el user_id del usuario
+            email = self.obtener_email(usuario)
             rol = self.obtener_rol_usuario(usuario)
             if rol == 'administrador':
                 # Aquí abres la ventana correspondiente al administrador
                 self.abrir_ventana_administrador()
             elif rol == 'cliente':
                 # Aquí abres la ventana correspondiente al cliente
-                self.abrir_ventana_cliente(user_id)
+                self.abrir_ventana_cliente(user_id, email)
 
 
         else:
@@ -171,8 +172,8 @@ class InicioSesion(wx.Frame):
         ventana_admin = PantallaPrincipalAdministrador(None)
         ventana_admin.Show()
         self.Close()
-    def abrir_ventana_cliente(self, user_id):
-        ventana_cliente = PantallaPrincipalUsuario(None,user_id)
+    def abrir_ventana_cliente(self, user_id, email):
+        ventana_cliente = PantallaPrincipalUsuario(None, user_id, email)
         ventana_cliente.Show()
         self.Close()
 
@@ -187,3 +188,15 @@ class InicioSesion(wx.Frame):
         conn.close()
 
         return user_id
+
+    def obtener_email(self, email):
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        query = "SELECT email FROM Usuario WHERE nombre=?"
+        cursor.execute(query, (email,))
+        email = cursor.fetchone()[0]
+
+        conn.close()
+
+        return email
