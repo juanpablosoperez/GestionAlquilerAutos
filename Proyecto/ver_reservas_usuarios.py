@@ -1,12 +1,10 @@
 import wx
 import wx.grid
 import sqlite3
-###########################################################################
-## Class VerReservasUsuarios
-###########################################################################
+
 
 class VerReservasUsuarios(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Reservas de Usuarios", pos=wx.DefaultPosition,
@@ -97,7 +95,7 @@ class VerReservasUsuarios(wx.Frame):
         # Grid
         self.m_grid3.CreateGrid(8, 8)
         self.m_grid3.EnableEditing(False)
-        self.m_grid3.EnableGridLines(True)  # Enabling grid lines
+        self.m_grid3.EnableGridLines(True)
         self.m_grid3.EnableDragGridSize(False)
         self.m_grid3.SetMargins(0, 0)
 
@@ -112,16 +110,14 @@ class VerReservasUsuarios(wx.Frame):
 
         self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Auto-size columns to fit content
         self.m_grid3.AutoSizeColumns()
 
-        # Rows
+        # Filas
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
         self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
         self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
@@ -149,7 +145,7 @@ class VerReservasUsuarios(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_reserva)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
         self.m_grid3.Bind(wx.grid.EVT_GRID_LABEL_LEFT_CLICK, self.seleccionar_reserva)
@@ -158,7 +154,6 @@ class VerReservasUsuarios(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def buscar_reserva(self, event):
         # Diccionario con consultas para las diferentes tablas y campos
         consultas = {
@@ -210,7 +205,6 @@ class VerReservasUsuarios(wx.Frame):
         # Obtener el valor ingresado en el campo de búsqueda
         valor_busqueda = self.m_searchCtrl1.GetValue()
 
-        # Conectar a la base de datos
         try:
             conn = sqlite3.connect('gestion_alquiler_autos.db')
             cursor = conn.cursor()
@@ -238,16 +232,13 @@ class VerReservasUsuarios(wx.Frame):
             # Obtener resultados
             resultados = cursor.fetchall()
 
-        # Mostrar los resultados en la grilla
             self.mostrar_resultados_en_grilla(resultados)
 
-            # Cerrar la conexión
             cursor.close()
             conn.close()
 
         except Exception as e:
             wx.MessageBox(f"Error al realizar la búsqueda: {e}", "Error", wx.ICON_ERROR)
-
 
     def refrescar_busqueda(self, event):
         # Limpiar el campo de búsqueda
@@ -285,7 +276,6 @@ class VerReservasUsuarios(wx.Frame):
             for columna, dato in enumerate(reserva):
                 self.m_grid3.SetCellValue(fila, columna, str(dato))
 
-        # Ajustar el tamaño de las columnas y las filas
         self.m_grid3.AutoSizeColumns()
         self.m_grid3.AutoSizeRows()
 

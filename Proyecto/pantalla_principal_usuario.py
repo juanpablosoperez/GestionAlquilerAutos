@@ -1,20 +1,18 @@
 import wx
 import wx.grid
-
+import sqlite3
 from mis_reservas import MisReservas
 from ver_detalle import VerDetalle
 
 
-###########################################################################
-## Class PantallaPrincipalUsuario
-###########################################################################
-
 class PantallaPrincipalUsuario(wx.Frame):
-
-    def __init__(self, parent):
+    # codigo para la interfaz
+    def __init__(self, parent, user_id, email):
+        self.user_id = user_id
+        self.email = email
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Pantalla Principal", pos=wx.DefaultPosition,
-                          size=wx.Size(700, 530), style=estilo)
+                          size=wx.Size(700, 500), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -66,7 +64,7 @@ class PantallaPrincipalUsuario(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID", u"Marca", u"Modelo", u"Disponibilidad", u"Precio por Día"]
+        m_choice1Choices = [u"Seleccionar", u"Marca", u"Modelo", u"Disponibilidad", u"Precio por Día"]
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
         fgSizer4.Add(self.m_choice1, 0, wx.ALL, 5)
@@ -109,40 +107,40 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_grid3 = wx.grid.Grid(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
         # Grid
-        self.m_grid3.CreateGrid(12, 5)
+        self.m_grid3.CreateGrid(12, 6)
         self.m_grid3.EnableEditing(False)
         self.m_grid3.EnableGridLines(True)
         self.m_grid3.EnableDragGridSize(False)
         self.m_grid3.SetMargins(0, 0)
 
-        # Columns
+        # Columnas
         self.m_grid3.SetColLabelSize(30)
         self.m_grid3.SetColLabelValue(0, u"ID")
         self.m_grid3.SetColLabelValue(1, u"Marca")
         self.m_grid3.SetColLabelValue(2, u"Modelo")
-        self.m_grid3.SetColLabelValue(3, u"Precio por Día")
-        self.m_grid3.SetColLabelValue(4, u"Disponibilidad")
-        self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
+        self.m_grid3.SetColLabelValue(3, u"Año")
+        self.m_grid3.SetColLabelValue(4, u"Precio por Día")
+        self.m_grid3.SetColLabelValue(5, u"Disponibilidad")
 
+        self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Ajustar tamaño de las columnas según los títulos
         self.m_grid3.AutoSizeColumns()
 
-        # Rows
+        # Filas
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
-        self.m_grid3.SetRowLabelSize(80)
+        self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
-        self.m_grid3.SetLabelBackgroundColour(wx.Colour(60, 60, 60))
+        self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
-        # Cell Defaults
+        # Celdas
         self.m_grid3.SetDefaultCellFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
         self.m_grid3.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         self.m_grid3.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-        self.m_grid3.Enable(False)
+        self.m_grid3.Enable(True)
 
         sbSizer9.Add(self.m_grid3, 0, wx.ALIGN_CENTER | wx.ALL, 5)
 
@@ -166,7 +164,7 @@ class PantallaPrincipalUsuario(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
         self.m_bpButton14.Bind(wx.EVT_BUTTON, self.ver_mis_reservas)
@@ -176,20 +174,145 @@ class PantallaPrincipalUsuario(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def buscar_auto(self, event):
-        event.Skip()
+        # Obtener la conexión a la base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+        # Obtener el filtro seleccionado
+        filtro_seleccionado = self.m_choice1.GetStringSelection()
+        busqueda = self.m_searchCtrl1.GetValue()
+        # Consulta base sin filtro específico
+        query = '''
+            SELECT Vehiculo.vehiculo_id, Vehiculo.marca, Vehiculo.modelo, Vehiculo.anio, Vehiculo.precio_por_dia, Vehiculo.disponibilidad
+            FROM Vehiculo
+        '''
+        parametros = []
+
+        # Si hay un filtro seleccionado, modificar la consulta
+        if filtro_seleccionado == "Marca":
+            query += " WHERE Vehiculo.marca LIKE ?"
+            parametros.append(f'%{busqueda}%')
+        elif filtro_seleccionado == "Modelo":
+            query += " WHERE Vehiculo.modelo LIKE ?"
+            parametros.append(f'%{busqueda}%')
+        elif filtro_seleccionado == "Disponibilidad":
+            # Convertir "Disponible" a 1 y "No disponible" a 0
+            if busqueda.lower() == "disponible":
+                disponibilidad_valor = 1
+            elif busqueda.lower() == "no disponible":
+                disponibilidad_valor = 0
+            else:
+                disponibilidad_valor = None
+
+            if disponibilidad_valor is not None:
+                query += " WHERE Vehiculo.disponibilidad = ?"
+                parametros.append(disponibilidad_valor)
+            else:
+                # Si el valor de búsqueda no es válido, no ejecutar la consulta
+                conn.close()
+                wx.MessageBox("Por favor ingrese 'Disponible' o 'No disponible' para filtrar por disponibilidad.",
+                              "Error", wx.OK | wx.ICON_ERROR)
+                return
+        elif filtro_seleccionado == "Precio por Día":
+            query += " WHERE Vehiculo.precio_por_dia = ?"
+            parametros.append(busqueda)
+
+        # Ejecutar la consulta
+        cursor.execute(query, parametros)
+        resultados = cursor.fetchall()
+
+        # Limpiar la grilla antes de mostrar los resultados
+        self.limpiar_grilla()
+
+        # Asegurarse de que la grilla tenga suficientes filas para los resultados
+        num_filas = len(resultados)
+        num_columnas = 6
+
+        if self.m_grid3.GetNumberRows() < num_filas:
+            self.m_grid3.AppendRows(num_filas - self.m_grid3.GetNumberRows())
+
+        if self.m_grid3.GetNumberCols() < num_columnas:
+            self.m_grid3.AppendCols(num_columnas - self.m_grid3.GetNumberCols())
+
+        # Mostrar los resultados en la grilla
+        for row_idx, row in enumerate(resultados):
+            for col_idx, value in enumerate(row):
+                if col_idx == 5:
+                    # Mostrar "Disponible" o "No disponible"
+                    value = "Disponible" if value == 1 else "No disponible"
+                self.m_grid3.SetCellValue(row_idx, col_idx, str(value))
+
+        # Ajustar tamaño de las columnas después de cargar los datos
+        self.m_grid3.AutoSizeColumns()
+        self.m_grid3.AutoSizeRows()
+
+        conn.close()
+
+    # Eliminar todos los datos de la grilla
+    def limpiar_grilla(self):
+        self.m_grid3.ClearGrid()
+        if self.m_grid3.GetNumberRows() > 0:
+            self.m_grid3.DeleteRows(0, self.m_grid3.GetNumberRows())
 
     def refrescar_busqueda(self, event):
-        event.Skip()
+        # Limpiar las filas de la grilla (asumo que es m_grid3 donde muestras los resultados)
+        num_rows = self.m_grid3.GetNumberRows()
+        if num_rows > 0:
+            self.m_grid3.DeleteRows(0, num_rows)
+
+        # Limpiar el campo de búsqueda
+        self.m_searchCtrl1.SetValue("")
+
+        # Restablecer el ChoiceBox a la opción predeterminada (asumo que la primera opción es la predeterminada)
+        self.m_choice1.SetSelection(0)
 
     def seleccionar_auto(self, event):
+        self.fila_seleccionada = self.m_grid3.GetGridCursorRow()
         event.Skip()
 
     def ver_mis_reservas(self,event):
-        mis_reservas = MisReservas(None)
+        mis_reservas = MisReservas(None, user_id=self.user_id)
         mis_reservas.Show()
 
     def ver_detalle(self, event):
-        ver_detalle = VerDetalle(None)
-        ver_detalle.Show()
+        if hasattr(self, 'fila_seleccionada'):
+            # Obtener el vehiculo_id de la fila seleccionada
+            vehiculo_id = self.m_grid3.GetCellValue(self.fila_seleccionada, 0)
+            marca = self.m_grid3.GetCellValue(self.fila_seleccionada, 1)
+            modelo = self.m_grid3.GetCellValue(self.fila_seleccionada, 2)
+            anio = self.m_grid3.GetCellValue(self.fila_seleccionada, 3)
+            precio_por_dia = self.m_grid3.GetCellValue(self.fila_seleccionada, 4)
+            disponibilidad = self.m_grid3.GetCellValue(self.fila_seleccionada, 5)
+
+            # Conectar a la base de datos para obtener información adicional
+            conn = sqlite3.connect('gestion_alquiler_autos.db')
+            cursor = conn.cursor()
+
+            # Realizar la consulta para obtener los detalles adicionales del vehículo usando vehiculo_id
+            cursor.execute('''
+                SELECT vehiculo_id, matricula, color, tipo
+                FROM Vehiculo
+                WHERE vehiculo_id = ?
+            ''', (vehiculo_id,))
+
+            vehiculo = cursor.fetchone()
+
+            # Cerrar la conexión
+            conn.close()
+
+            if vehiculo:
+                vehiculo_id, matricula, color, tipo = vehiculo
+
+                # Mostrar la pantalla de detalles con la información del vehículo
+                ver_detalle = VerDetalle(None, self.user_id, vehiculo_id, self.email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color,
+                                         tipo)
+                ver_detalle.Show()
+            else:
+                wx.MessageBox("No se pudieron obtener los detalles adicionales del vehículo.", "Error",
+                              wx.OK | wx.ICON_ERROR)
+        else:
+            wx.MessageBox("Por favor, seleccione un vehículo de la grilla.", "Error", wx.OK | wx.ICON_ERROR)
+
+
+
+

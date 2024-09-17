@@ -1,11 +1,9 @@
 import wx
 import  sqlite3
-###########################################################################
-## Clase ModificarVehiculo
-###########################################################################
+
 
 class ModificarVehiculo(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent, datos_vehiculo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Modificar Vehículo", pos=wx.DefaultPosition,
@@ -131,10 +129,10 @@ class ModificarVehiculo(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Conectar eventos
+        # eventos
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button5.Bind(wx.EVT_BUTTON, self.agregar_auto)
-        # Asociar el evento del botón "Agregar" a la función de actualización
+
         self.Bind(wx.EVT_BUTTON, self.agregar_auto, id=self.m_button5.GetId())
 
         # Guardar el ID del vehículo para futuras actualizaciones
@@ -159,12 +157,11 @@ class ModificarVehiculo(wx.Frame):
         self.m_textCtrl193.SetValue(datos_vehiculo[6])  # Matrícula
         self.m_textCtrl194.SetValue(datos_vehiculo[7])  # Color
 
-    # Manejadores de eventos
     def cerrar_sesion(self, event):
         self.Close()
 
     def agregar_auto(self, event):
-        # Obtener los datos modificados de los controles
+        # Obtener los datos modificados
         marca = self.m_textCtrl18.GetValue()
         modelo = self.m_textCtrl19.GetValue()
         anio = self.m_textCtrl26.GetValue()

@@ -1,8 +1,9 @@
 import wx
 import sqlite3
 
-class AsignarAdmin(wx.Frame):
 
+class AsignarAdmin(wx.Frame):
+    # codigo para la interfaz
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Asignar Usuario Administrador", pos=wx.DefaultPosition,
@@ -154,7 +155,7 @@ class AsignarAdmin(wx.Frame):
         self.Layout()
         self.Centre(wx.BOTH)
 
-        # Bind events
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_usuario)
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_asign_admin)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_pantalla)
@@ -167,12 +168,12 @@ class AsignarAdmin(wx.Frame):
 
     def refrescar_pantalla(self, event):
         # Limpiar los TextCtrl (ID, Nombre, Email)
-        self.m_textCtrl18.SetValue("")  # Limpiar campo de Identificación
-        self.m_textCtrl181.SetValue("")  # Limpiar campo de Nombre
-        self.m_textCtrl1811.SetValue("")  # Limpiar campo de Correo
+        self.m_textCtrl18.SetValue("")
+        self.m_textCtrl181.SetValue("")
+        self.m_textCtrl1811.SetValue("")
 
         # Limpiar el SearchCtrl (Campo de búsqueda)
-        self.m_searchCtrl1.SetValue("")  # Limpiar el campo de búsqueda
+        self.m_searchCtrl1.SetValue("")
 
         # Reiniciar el ChoiceBox (Buscar por)
         self.m_choice1.SetSelection(0)  # Seleccionar el valor por defecto "Seleccionar"
@@ -209,26 +210,24 @@ class AsignarAdmin(wx.Frame):
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
         try:
-            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")  # Depuración
+            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")
             if valor_busqueda:
                 cursor.execute(consulta_sql, (valor_busqueda,))
             else:
                 cursor.execute(consulta_sql)
             resultados = cursor.fetchall()
-            print(f"Resultados obtenidos: {resultados}")  # Depuración
+            print(f"Resultados obtenidos: {resultados}")
 
             if resultados:
-                # Tomar el primer resultado (asumiendo que es único)
+                # Tomar el primer resultado
                 usuario = resultados[0]
 
-                # Asumimos que los campos en la base de datos son:
-                # usuario_id, nombre, apellido, email, password, telefono, direccion, tipo
                 usuario_id, nombre, apellido, email, password, telefono, direccion, tipo = usuario
 
                 # Cargar la información en los TextCtrl
-                self.m_textCtrl18.SetValue(str(usuario_id))  # Identificación
-                self.m_textCtrl181.SetValue(nombre)  # Nombre
-                self.m_textCtrl1811.SetValue(email)  # Email
+                self.m_textCtrl18.SetValue(str(usuario_id))
+                self.m_textCtrl181.SetValue(nombre)
+                self.m_textCtrl1811.SetValue(email)
 
                 # Manejo del tipo
                 if tipo == 'administrador':

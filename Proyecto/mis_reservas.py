@@ -1,13 +1,12 @@
 import wx
 import wx.grid
+import sqlite3
 
-###########################################################################
-## Class MisReservas
-###########################################################################
 
 class MisReservas(wx.Frame):
-
-    def __init__(self, parent):
+    # codigo para la interfaz
+    def __init__(self, parent, user_id):
+        self.user_id = user_id
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Mis Reservas", pos=wx.DefaultPosition,
                           size=wx.Size(605, 400), style=estilo)
@@ -18,6 +17,7 @@ class MisReservas(wx.Frame):
             wx.BITMAP_TYPE_PNG)
 
         self.SetIcon(icon)
+
         bSizer111 = wx.BoxSizer(wx.VERTICAL)
 
         fgSizer5 = wx.FlexGridSizer(2, 1, 0, 0)
@@ -52,7 +52,7 @@ class MisReservas(wx.Frame):
 
         fgSizer4.Add(self.m_staticText21, 0, wx.ALL, 5)
 
-        m_choice1Choices = [u"Seleccionar", u"ID", u"Fecha de Inicio", u"Fecha de Fin", u"Estado"]
+        m_choice1Choices = [u"Seleccionar", u"Estado"]
         self.m_choice1 = wx.Choice(self.m_panel1, wx.ID_ANY, wx.DefaultPosition, wx.Size(100, -1), m_choice1Choices, 0)
         self.m_choice1.SetSelection(0)
         fgSizer4.Add(self.m_choice1, 0, wx.ALL, 5)
@@ -102,50 +102,46 @@ class MisReservas(wx.Frame):
         self.m_grid3 = wx.grid.Grid(self.m_grid_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
         # Grid
-        self.m_grid3.CreateGrid(8, 7)
+        self.m_grid3.CreateGrid(8, 5)
         self.m_grid3.EnableEditing(False)
         self.m_grid3.EnableGridLines(True)
         self.m_grid3.EnableDragGridSize(False)
-        self.m_grid3.SetMargins(0, 0)
+        self.m_grid3.SetMargins(5, 5)
 
-        # Columns
+        # Columnas
         self.m_grid3.SetColLabelValue(0, u"ID Reserva")
-        self.m_grid3.SetColLabelValue(1, u"ID Vehículo")
-        self.m_grid3.SetColLabelValue(2, u"Marca")
-        self.m_grid3.SetColLabelValue(3, u"Modelo")
-        self.m_grid3.SetColLabelValue(4, u"Fecha de Inicio")
-        self.m_grid3.SetColLabelValue(5, u"Fecha de Fin")
-        self.m_grid3.SetColLabelValue(6, u"Precio Total")
-        self.m_grid3.SetColLabelValue(7, u"Estado")
+        self.m_grid3.SetColLabelValue(1, u"Fecha de Inicio")
+        self.m_grid3.SetColLabelValue(2, u"Fecha de Fin")
+        self.m_grid3.SetColLabelValue(3, u"Precio Total")
+        self.m_grid3.SetColLabelValue(4, u"Estado")
         self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
         # Ajuste de tamaño de columnas
         for col in range(self.m_grid3.GetNumberCols()):
             self.m_grid3.AutoSizeColumn(col)
 
-        # Rows
+        # Filas
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
         self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
-        self.m_grid3.SetLabelBackgroundColour(wx.Colour(60, 60, 60))
+        self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
-        # Cell Defaults
+        # Celdas
         self.m_grid3.SetDefaultCellFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
         self.m_grid3.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         self.m_grid3.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
-        self.m_grid3.Enable(False)
+        self.m_grid3.Enable(True)
 
         grid_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        grid_sizer.Add(self.m_grid3, 1, wx.EXPAND | wx.ALL, 5)
+        grid_sizer.Add(self.m_grid3, 1,wx.ALIGN_CENTRE | wx.ALL, 5)
         self.m_grid_panel.SetSizer(grid_sizer)
 
         fgSizer31.Add(self.m_grid_panel, 1, wx.EXPAND, 5)
 
-        sbSizer22.Add(fgSizer31, 1, wx.EXPAND, 5)
+        sbSizer22.Add(fgSizer31, 1,wx.ALIGN_CENTRE  | wx.ALL, 5)
 
         bSizer114.Add(sbSizer22, 1, wx.EXPAND, 5)
 
@@ -166,18 +162,75 @@ class MisReservas(wx.Frame):
         self.Layout()
         self.Centre(wx.BOTH)
 
+        # Eventos
+        self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_reserva)
+        self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
+        self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
+
     def __del__(self):
         pass
 
-    # Virtual event handlers, overide them in your derived class
-    def buscar_auto(self, event):
-        event.Skip()
+    def buscar_reserva(self, event):
+        # Obtener el término de búsqueda y el filtro
+        search_term = self.m_searchCtrl1.GetValue()
+        filtro = self.m_choice1.GetStringSelection()
+
+        # Conexión a la base de datos (SQLite en este caso)
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
+        cursor = conn.cursor()
+
+        # Query base
+        query = "SELECT reserva_id, fecha_inicio, fecha_fin, precio_total, estado FROM Reserva WHERE usuario_id = ?"
+        params = [self.user_id]
+
+        # Agregar filtros según el filtro seleccionado
+        if filtro == "Fecha de Inicio" and search_term:
+            query += " AND fecha_inicio LIKE ?"
+            params.append(f'%{search_term}%')
+        elif filtro == "Fecha de Fin" and search_term:
+            query += " AND fecha_fin LIKE ?"
+            params.append(f'%{search_term}%')
+        elif filtro == "Estado" and search_term:
+            query += " AND estado LIKE ?"
+            params.append(f'%{search_term}%')
+
+        # Ejecutar la consulta
+        cursor.execute(query, params)
+        resultados = cursor.fetchall()
+
+        # Limpiar la grilla
+        self.m_grid3.ClearGrid()
+
+        # Redimensionar la grilla según los resultados
+        if len(resultados) > self.m_grid3.GetNumberRows():
+            self.m_grid3.AppendRows(len(resultados) - self.m_grid3.GetNumberRows())
+        elif len(resultados) < self.m_grid3.GetNumberRows():
+            self.m_grid3.DeleteRows(0, self.m_grid3.GetNumberRows() - len(resultados))
+
+        # Insertar resultados en la grilla
+        for row, reserva in enumerate(resultados):
+            for col, value in enumerate(reserva):
+                self.m_grid3.SetCellValue(row, col, str(value))
+
+        # Ajustar tamaño de la columna "Estado"
+        self.m_grid3.AutoSizeColumn(4)
 
     def refrescar_busqueda(self, event):
-        event.Skip()
+        # Limpiar la grilla
+        self.m_grid3.ClearGrid()
 
-    def seleccionar_vehiculo(self, event):
-        event.Skip()
+        # Restablecer el número de filas a 8 (o el número inicial deseado)
+        self.m_grid3.DeleteRows(0, self.m_grid3.GetNumberRows(), True)
+        self.m_grid3.AppendRows(8)
 
-    def cerrar_asign_admin(self, event):
-        event.Skip()
+        # Limpiar el campo de búsqueda
+        self.m_searchCtrl1.SetValue("")
+
+        # Restablecer la selección del Choice
+        self.m_choice1.SetSelection(0)
+
+        # Forzar la actualización de la grilla
+        self.m_grid3.ForceRefresh()
+
+    def cerrar_sesion(self, event):
+        self.Close()
