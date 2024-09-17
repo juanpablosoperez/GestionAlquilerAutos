@@ -5,12 +5,8 @@ from mis_reservas import MisReservas
 from ver_detalle import VerDetalle
 
 
-###########################################################################
-## Class PantallaPrincipalUsuario
-###########################################################################
-
 class PantallaPrincipalUsuario(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent, user_id, email):
         self.user_id = user_id
         self.email = email
@@ -117,7 +113,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_grid3.EnableDragGridSize(False)
         self.m_grid3.SetMargins(0, 0)
 
-        # Columns
+        # Columnas
         self.m_grid3.SetColLabelSize(30)
         self.m_grid3.SetColLabelValue(0, u"ID")
         self.m_grid3.SetColLabelValue(1, u"Marca")
@@ -126,25 +122,21 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_grid3.SetColLabelValue(4, u"Precio por Día")
         self.m_grid3.SetColLabelValue(5, u"Disponibilidad")
 
-
-
         self.m_grid3.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
-
 
         # Ajustar tamaño de las columnas según los títulos
         self.m_grid3.AutoSizeColumns()
 
-        # Rows
+        # Filas
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
         self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
         self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
-        # Cell Defaults
+        # Celdas
         self.m_grid3.SetDefaultCellFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
         self.m_grid3.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         self.m_grid3.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -172,7 +164,7 @@ class PantallaPrincipalUsuario(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
         self.m_bpButton14.Bind(wx.EVT_BUTTON, self.ver_mis_reservas)
@@ -182,16 +174,13 @@ class PantallaPrincipalUsuario(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def buscar_auto(self, event):
         # Obtener la conexión a la base de datos
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
-
         # Obtener el filtro seleccionado
         filtro_seleccionado = self.m_choice1.GetStringSelection()
         busqueda = self.m_searchCtrl1.GetValue()
-
         # Consulta base sin filtro específico
         query = '''
             SELECT Vehiculo.vehiculo_id, Vehiculo.marca, Vehiculo.modelo, Vehiculo.anio, Vehiculo.precio_por_dia, Vehiculo.disponibilidad
@@ -213,7 +202,7 @@ class PantallaPrincipalUsuario(wx.Frame):
             elif busqueda.lower() == "no disponible":
                 disponibilidad_valor = 0
             else:
-                disponibilidad_valor = None  # Valor inválido
+                disponibilidad_valor = None
 
             if disponibilidad_valor is not None:
                 query += " WHERE Vehiculo.disponibilidad = ?"
@@ -237,7 +226,7 @@ class PantallaPrincipalUsuario(wx.Frame):
 
         # Asegurarse de que la grilla tenga suficientes filas para los resultados
         num_filas = len(resultados)
-        num_columnas = 6  # Número de columnas que tienes (id, marca, modelo, año, precio, disponibilidad)
+        num_columnas = 6
 
         if self.m_grid3.GetNumberRows() < num_filas:
             self.m_grid3.AppendRows(num_filas - self.m_grid3.GetNumberRows())
@@ -248,7 +237,7 @@ class PantallaPrincipalUsuario(wx.Frame):
         # Mostrar los resultados en la grilla
         for row_idx, row in enumerate(resultados):
             for col_idx, value in enumerate(row):
-                if col_idx == 5:  # Columna de disponibilidad
+                if col_idx == 5:
                     # Mostrar "Disponible" o "No disponible"
                     value = "Disponible" if value == 1 else "No disponible"
                 self.m_grid3.SetCellValue(row_idx, col_idx, str(value))
@@ -257,11 +246,10 @@ class PantallaPrincipalUsuario(wx.Frame):
         self.m_grid3.AutoSizeColumns()
         self.m_grid3.AutoSizeRows()
 
-        # Cerrar la conexión
         conn.close()
 
+    # Eliminar todos los datos de la grilla
     def limpiar_grilla(self):
-        # Eliminar todos los datos de la grilla
         self.m_grid3.ClearGrid()
         if self.m_grid3.GetNumberRows() > 0:
             self.m_grid3.DeleteRows(0, self.m_grid3.GetNumberRows())
@@ -289,12 +277,12 @@ class PantallaPrincipalUsuario(wx.Frame):
     def ver_detalle(self, event):
         if hasattr(self, 'fila_seleccionada'):
             # Obtener el vehiculo_id de la fila seleccionada
-            vehiculo_id = self.m_grid3.GetCellValue(self.fila_seleccionada, 0)  # Ajusta el índice si es necesario
+            vehiculo_id = self.m_grid3.GetCellValue(self.fila_seleccionada, 0)
             marca = self.m_grid3.GetCellValue(self.fila_seleccionada, 1)
             modelo = self.m_grid3.GetCellValue(self.fila_seleccionada, 2)
             anio = self.m_grid3.GetCellValue(self.fila_seleccionada, 3)
             precio_por_dia = self.m_grid3.GetCellValue(self.fila_seleccionada, 4)
-            disponibilidad = self.m_grid3.GetCellValue(self.fila_seleccionada, 5)  # Ajusta el índice si es necesario
+            disponibilidad = self.m_grid3.GetCellValue(self.fila_seleccionada, 5)
 
             # Conectar a la base de datos para obtener información adicional
             conn = sqlite3.connect('gestion_alquiler_autos.db')
@@ -316,9 +304,8 @@ class PantallaPrincipalUsuario(wx.Frame):
                 vehiculo_id, matricula, color, tipo = vehiculo
 
                 # Mostrar la pantalla de detalles con la información del vehículo
-                ver_detalle = VerDetalle(None,self.user_id, vehiculo_id, self.email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color,
+                ver_detalle = VerDetalle(None, self.user_id, vehiculo_id, self.email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color,
                                          tipo)
-                #print("Vehiculo_id: " + str(vehiculo_id))
                 ver_detalle.Show()
             else:
                 wx.MessageBox("No se pudieron obtener los detalles adicionales del vehículo.", "Error",

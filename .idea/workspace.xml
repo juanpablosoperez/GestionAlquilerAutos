@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para que el usuario pueda reservar un vehiculo y pagar.">
+    <list default="true" id="c0313e6f-471f-46ff-8346-33fe487e2e0f" name="Changes" comment="Funcionalidad para que el usuario genere una reserva, y se inserten los datos en tabla Reserva, y pago. Envio de mail al generarse el pago.">
       <change afterPath="$PROJECT_DIR$/Proyecto/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/agregar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/asignar_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/asignar_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/enviar_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/enviar_email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto/gestion_alquiler_autos.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/formulario_registro.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/formulario_registro.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/inicio_sesion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/mis_reservas.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/mis_reservas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/modificar_vehiculo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pagos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pagos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_crud_admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/pantalla_principal_usuario.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/reserva_vehiculo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto/ver_detalle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_detalle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto/ver_reservas_usuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,7 +436,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726246302940</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Funcionalidad para que el usuario genere una reserva, y se inserten los datos en tabla Reserva, y pago. Envio de mail al generarse el pago.">
+      <option name="closed" value="true" />
+      <created>1726521678030</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1726521678030</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -466,6 +483,7 @@
     <MESSAGE value="Finalizacion pantalla de cliente para ver sus reservas según el cliente que se Logeo." />
     <MESSAGE value="Funcionalidad para que el usuario pueda seleccionar un auto y ver detalle." />
     <MESSAGE value="Funcionalidad para que el usuario pueda reservar un vehiculo y pagar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para que el usuario pueda reservar un vehiculo y pagar." />
+    <MESSAGE value="Funcionalidad para que el usuario genere una reserva, y se inserten los datos en tabla Reserva, y pago. Envio de mail al generarse el pago." />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionalidad para que el usuario genere una reserva, y se inserten los datos en tabla Reserva, y pago. Envio de mail al generarse el pago." />
   </component>
 </project>

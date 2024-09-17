@@ -1,12 +1,9 @@
 import wx
 import sqlite3
 
-###########################################################################
-## Class AgregarVehiculo
-###########################################################################
 
 class AgregarVehiculo(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Agregar Vehículo", pos=wx.DefaultPosition,
@@ -131,14 +128,13 @@ class AgregarVehiculo(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_button4.Bind(wx.EVT_BUTTON, self.cancelar)
         self.m_button5.Bind(wx.EVT_BUTTON, self.agregar)
 
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def cancelar(self, event):
         self.Close()
 
@@ -152,7 +148,6 @@ class AgregarVehiculo(wx.Frame):
         matricula = self.m_textCtrl193.GetValue()
         color = self.m_textCtrl194.GetValue()
 
-        # Conectar a la base de datos
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
 
@@ -178,6 +173,5 @@ class AgregarVehiculo(wx.Frame):
             wx.MessageBox(f"Error al agregar el vehículo: {e}", "Error", wx.OK | wx.ICON_ERROR)
 
         finally:
-            # Cerrar la conexión
             conn.close()
             self.Close()

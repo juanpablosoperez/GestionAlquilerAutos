@@ -4,12 +4,9 @@ from datetime import datetime
 import sqlite3
 from enviar_email import enviar_correo_confirmacion_pago
 
-###########################################################################
-## Class ReservaVehiculo
-###########################################################################
 
 class ReservaVehiculo(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent, precio_por_dia, usuario_id, vehiculo_id, email):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Reservar Vehículo", pos=wx.DefaultPosition,
@@ -24,7 +21,7 @@ class ReservaVehiculo(wx.Frame):
 
         self.precio_por_dia = precio_por_dia  # Guardar el precio por día
         self.usuario_id = usuario_id  # Guardar el ID del usuario
-        self.vehiculo_id = vehiculo_id #Guardar el ID del vehiculo
+        self.vehiculo_id = vehiculo_id  # Guardar el ID del vehiculo
         self.email = email
 
         bSizer29 = wx.BoxSizer(wx.VERTICAL)
@@ -102,7 +99,7 @@ class ReservaVehiculo(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button41.Bind(wx.EVT_BUTTON, self.confirmar_reserva)
         self.m_datePicker1.Bind(wx.adv.EVT_DATE_CHANGED, self.calcular_precio)
@@ -129,12 +126,11 @@ class ReservaVehiculo(wx.Frame):
 
             monto_total = num_dias * self.precio_por_dia
 
-            # Conectar con la base de datos
             try:
                 conn = sqlite3.connect('gestion_alquiler_autos.db')
                 cursor = conn.cursor()
 
-                # Insertar en la tabla Reserva con el estado 'pendiente'
+                # Insertar en la tabla Reserva con el estado 'Completada'
                 cursor.execute(''' 
                     INSERT INTO Reserva (usuario_id, vehiculo_id, fecha_inicio, fecha_fin, precio_total, estado)
                     VALUES (?, ?, ?, ?, ?, ?)

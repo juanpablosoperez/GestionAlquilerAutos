@@ -1,12 +1,10 @@
 import wx
 import wx.grid
 import sqlite3
-###########################################################################
-## Class MisReservas
-###########################################################################
+
 
 class MisReservas(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent, user_id):
         self.user_id = user_id
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
@@ -110,7 +108,7 @@ class MisReservas(wx.Frame):
         self.m_grid3.EnableDragGridSize(False)
         self.m_grid3.SetMargins(5, 5)
 
-        # Columns
+        # Columnas
         self.m_grid3.SetColLabelValue(0, u"ID Reserva")
         self.m_grid3.SetColLabelValue(1, u"Fecha de Inicio")
         self.m_grid3.SetColLabelValue(2, u"Fecha de Fin")
@@ -122,17 +120,16 @@ class MisReservas(wx.Frame):
         for col in range(self.m_grid3.GetNumberCols()):
             self.m_grid3.AutoSizeColumn(col)
 
-        # Rows
+        # Filas
         self.m_grid3.AutoSizeRows()
         self.m_grid3.EnableDragRowSize(True)
         self.m_grid3.SetRowLabelSize(20)
         self.m_grid3.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
         self.m_grid3.SetLabelBackgroundColour(wx.Colour(192, 192, 192))
         self.m_grid3.SetLabelFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
 
-        # Cell Defaults
+        # Celdas
         self.m_grid3.SetDefaultCellFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
         self.m_grid3.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         self.m_grid3.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -165,7 +162,7 @@ class MisReservas(wx.Frame):
         self.Layout()
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_reserva)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
@@ -173,14 +170,13 @@ class MisReservas(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, overide them in your derived class
     def buscar_reserva(self, event):
         # Obtener el término de búsqueda y el filtro
         search_term = self.m_searchCtrl1.GetValue()
         filtro = self.m_choice1.GetStringSelection()
 
         # Conexión a la base de datos (SQLite en este caso)
-        conn = sqlite3.connect('gestion_alquiler_autos.db')  # Ajusta el nombre de tu base de datos
+        conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
 
         # Query base

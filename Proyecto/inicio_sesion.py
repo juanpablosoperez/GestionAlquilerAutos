@@ -3,13 +3,14 @@ import sqlite3
 from formulario_registro import FormularioRegistro
 from pantalla_principal_admin import PantallaPrincipalAdministrador
 from pantalla_principal_usuario import PantallaPrincipalUsuario
-###########################################################################
-## Class InicioSesion
-###########################################################################
+
 
 class InicioSesion(wx.Frame):
 
     def __init__(self, parent):
+
+        # Código para la interfaz
+
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Inicio de Sesión", pos=wx.DefaultPosition,
                           size=wx.Size(300, 320), style=estilo)
@@ -22,6 +23,7 @@ class InicioSesion(wx.Frame):
             wx.BITMAP_TYPE_PNG)
 
         self.SetIcon(icon)
+
         bSizer1 = wx.BoxSizer(wx.VERTICAL)
 
         self.m_staticText156 = wx.StaticText(self, wx.ID_ANY, u"Iniciar Sesión", wx.DefaultPosition, wx.DefaultSize, 0)
@@ -101,7 +103,7 @@ class InicioSesion(wx.Frame):
         self.m_button1.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
         self.m_button1.SetToolTip(wx.ToolTip(u"Iniciar Sesión"))
 
-        bSizer4.Add(self.m_button1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)  # Actualizado
+        bSizer4.Add(self.m_button1, 0, wx.ALIGN_CENTER_VERTICAL | wx.ALL, 5)
 
         bSizer1.Add(bSizer4, 1, wx.ALIGN_CENTER_HORIZONTAL, 5)
 
@@ -110,68 +112,63 @@ class InicioSesion(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
-        self.m_button2.Bind(wx.EVT_BUTTON, self.formularioderegistro)
+        # Eventos
+        self.m_button2.Bind(wx.EVT_BUTTON, self.formulario_de_registro)
         self.m_button1.Bind(wx.EVT_BUTTON, self.iniciar_sesion)
 
     def __del__(self):
         pass
 
-    def formularioderegistro(self, event):
-        # Crear e iniciar la ventana de registro
+    def formulario_de_registro(self, event):
         frm_registro = FormularioRegistro(self)
         frm_registro.Show()
         event.Skip()
 
+    # Funcion de inicio de sesion, obtenemos el id de usuario y email, y muestra una pantalla diferente
+    # si sos rol "administrador" o "cliente"
     def iniciar_sesion(self, event):
         usuario = self.m_textCtrl1.GetValue()
         contrasena = self.m_textCtrl11.GetValue()
 
         if self.verificar_credenciales(usuario, contrasena):
             wx.MessageBox('Inicio de sesión exitoso', 'Info', wx.OK | wx.ICON_INFORMATION)
-            user_id = self.obtener_user_id(usuario)  # Obtener el user_id del usuario
+            user_id = self.obtener_user_id(usuario)
             email = self.obtener_email(usuario)
             rol = self.obtener_rol_usuario(usuario)
+
             if rol == 'administrador':
-                # Aquí abres la ventana correspondiente al administrador
                 self.abrir_ventana_administrador()
             elif rol == 'cliente':
-                # Aquí abres la ventana correspondiente al cliente
                 self.abrir_ventana_cliente(user_id, email)
-
-
         else:
             wx.MessageBox('Usuario o contraseña incorrectos', 'Error', wx.OK | wx.ICON_ERROR)
 
+    # valida las credenciales haciendo una consulta en la tabla Usuario
     def verificar_credenciales(self, usuario, contrasena):
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
-
-        # No se utiliza hashing, se compara directamente la contraseña en texto plano
         query = "SELECT * FROM Usuario WHERE nombre=? AND password=?"
         cursor.execute(query, (usuario, contrasena))
         result = cursor.fetchone()
-
         conn.close()
-
         return result is not None
 
+    # obtiene el rol haciendo una consulta a la tabla Usuario
     def obtener_rol_usuario(self, usuario):
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
-
         query = "SELECT tipo FROM Usuario WHERE nombre=?"
         cursor.execute(query, (usuario,))
         result = cursor.fetchone()
-
         conn.close()
-
         return result[0] if result else None
 
     def abrir_ventana_administrador(self):
         ventana_admin = PantallaPrincipalAdministrador(None)
         ventana_admin.Show()
         self.Close()
+
+    # si es rol cliente enviamos el user_id y su email
     def abrir_ventana_cliente(self, user_id, email):
         ventana_cliente = PantallaPrincipalUsuario(None, user_id, email)
         ventana_cliente.Show()
@@ -180,23 +177,17 @@ class InicioSesion(wx.Frame):
     def obtener_user_id(self, usuario):
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
-
         query = "SELECT usuario_id FROM Usuario WHERE nombre=?"
         cursor.execute(query, (usuario,))
         user_id = cursor.fetchone()[0]
-
         conn.close()
-
         return user_id
 
     def obtener_email(self, email):
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
-
         query = "SELECT email FROM Usuario WHERE nombre=?"
         cursor.execute(query, (email,))
         email = cursor.fetchone()[0]
-
         conn.close()
-
         return email

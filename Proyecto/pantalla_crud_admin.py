@@ -5,12 +5,8 @@ from modificar_vehiculo import ModificarVehiculo
 import sqlite3
 
 
-###########################################################################
-## Class RegistroAlquiler
-###########################################################################
-
 class RegistroAlquiler(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"CRUD - GESTIÓN DE VEHÍCULOS",
@@ -177,7 +173,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.EnableDragGridSize(False)
         self.m_grid2.SetMargins(5, 5)
 
-        # Columns
+        # Columnas
         self.m_grid2.EnableDragColMove(False)
         self.m_grid2.EnableDragColSize(False)
         self.m_grid2.SetColLabelSize(30)
@@ -192,7 +188,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetColLabelValue(8, u"Tipo")
         self.m_grid2.SetColLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Rows
+        # Filas
         self.m_grid2.SetRowSize(0, 16)
         self.m_grid2.SetRowSize(1, 16)
         self.m_grid2.SetRowSize(2, 16)
@@ -207,9 +203,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_grid2.SetRowLabelSize(20)
         self.m_grid2.SetRowLabelAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
 
-        # Label Appearance
-
-        # Cell Defaults
+        # Celdas
         self.m_grid2.SetDefaultCellAlignment(wx.ALIGN_CENTRE, wx.ALIGN_CENTRE)
         sbSizer3.Add(self.m_grid2, 0, wx.ALL, 5)
 
@@ -222,21 +216,19 @@ class RegistroAlquiler(wx.Frame):
         self.Layout()
 
         self.Centre(wx.BOTH)
-        # Connect Events
+
+        # Eventos
         self.m_bpButton2.Bind(wx.EVT_BUTTON, self.buscar_auto)
         self.m_bpButton3.Bind(wx.EVT_BUTTON, self.refrescar_busqueda)
         self.m_button42.Bind(wx.EVT_BUTTON, self.agregar_auto)
         self.m_button43.Bind(wx.EVT_BUTTON, self.modificar_auto)
         self.m_button44.Bind(wx.EVT_BUTTON, self.eliminar_auto)
         self.m_button45.Bind(wx.EVT_BUTTON, self.salir_crud)
-        # Asociar eventos
         self.m_grid2.Bind(wx.grid.EVT_GRID_SELECT_CELL, self.on_grid_select)
         self.m_button44.Bind(wx.EVT_BUTTON, self.on_eliminar_click)
 
     def __del__(self):
         pass
-
-        # Virtual event handlers, overide them in your derived class
 
     def buscar_auto(self, event):
         # Obtener el atributo seleccionado del ChoiceBox
@@ -254,17 +246,16 @@ class RegistroAlquiler(wx.Frame):
             consulta_sql = f"SELECT * FROM Vehiculo WHERE {atributo_seleccionado} LIKE ?"
             valor_busqueda = f"%{texto_busqueda}%"
 
-        # Conectar a la base de datos y ejecutar la consulta
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
         try:
-            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")  # Depuración
+            print(f"Ejecutando consulta SQL: {consulta_sql} con valor de búsqueda: {valor_busqueda}")
             if valor_busqueda:
                 cursor.execute(consulta_sql, (valor_busqueda,))
             else:
                 cursor.execute(consulta_sql)
             resultados = cursor.fetchall()
-            print(f"Resultados obtenidos: {resultados}")  # Depuración
+            print(f"Resultados obtenidos: {resultados}")
         except sqlite3.OperationalError as e:
             wx.MessageBox(f"Error en la consulta SQL: {e}", "Error", wx.OK | wx.ICON_ERROR)
             resultados = []
@@ -276,7 +267,7 @@ class RegistroAlquiler(wx.Frame):
         # Verificar si hay resultados y ajustar el tamaño de la grilla si es necesario
         if resultados:
             num_filas = len(resultados)
-            num_columnas = len(resultados[0])  # Suponiendo que todas las filas tienen el mismo número de columnas
+            num_columnas = len(resultados[0])
 
             # Ajustar el número de filas en la grilla
             if num_filas > self.m_grid2.GetNumberRows():
@@ -290,7 +281,7 @@ class RegistroAlquiler(wx.Frame):
             for i, fila in enumerate(resultados):
                 for j, valor in enumerate(fila):
                     # Convertir el valor del campo "disponibilidad"
-                    if j == 5:  # Suponiendo que la columna "disponibilidad" es la sexta (índice 5)
+                    if j == 5:
                         valor = 'Disponible' if valor == 1 else 'No disponible'
                     self.m_grid2.SetCellValue(i, j, str(valor))
         else:
@@ -306,7 +297,7 @@ class RegistroAlquiler(wx.Frame):
         self.m_searchCtrl1.SetValue("")
 
         # Restablecer el ChoiceBox a la opción predeterminada
-        self.m_choice1.SetSelection(0)  # Asumiendo que la primera opción es la predeterminada
+        self.m_choice1.SetSelection(0)
 
     def agregar_auto(self, event):
         agregar_auto = AgregarVehiculo(None)
@@ -314,7 +305,6 @@ class RegistroAlquiler(wx.Frame):
 
 
     def eliminar_auto(self, id_vehiculo):
-        # Conectar a la base de datos
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
 

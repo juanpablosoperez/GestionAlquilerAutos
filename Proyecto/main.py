@@ -1,10 +1,10 @@
 import wx
 from inicio_sesion import InicioSesion
 
+
 class MainApp(wx.App):
     def OnInit(self):
         login_frame = InicioSesion(None)
-
         login_frame.Show()
         return True
 

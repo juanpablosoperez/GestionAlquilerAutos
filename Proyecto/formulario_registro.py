@@ -1,12 +1,10 @@
 import wx
 import sqlite3
 from enviar_email import enviar_correo_confirmacion
-###########################################################################
-## Class FormularioRegistro
-###########################################################################
+
 
 class FormularioRegistro(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Formulario de Registro", pos=wx.DefaultPosition,
@@ -148,20 +146,20 @@ class FormularioRegistro(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_button4.Bind(wx.EVT_BUTTON, self.cerrar_sesion)
         self.m_button5.Bind(wx.EVT_BUTTON, self.registrar_usuario)
 
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def cerrar_sesion(self, event):
         self.Close()
 
     def cerrar_registro(self, event):
         self.Close()
 
+    # registra usuario y envia email de confirmacion
     def registrar_usuario(self, event):
         nombre = self.m_textCtrl1.GetValue()
         apellido = self.m_textCtrl11.GetValue()
@@ -188,4 +186,3 @@ class FormularioRegistro(wx.Frame):
             wx.MessageBox(f'Error al registrar el usuario: {e}', 'Error', wx.OK | wx.ICON_ERROR)
         finally:
             conn.close()
-

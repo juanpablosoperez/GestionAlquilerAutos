@@ -3,6 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import time
 
+
 def enviar_correo_confirmacion(email):
     # Configuración del servidor SMTP y credenciales
     smtp_server = "smtp.gmail.com"
@@ -18,7 +19,7 @@ def enviar_correo_confirmacion(email):
 
     # Crear el mensaje
     message = MIMEMultipart()
-    message["From"] = 'Gestión de Alquileres de Autos' # si no funciona pongo smtp_user
+    message["From"] = 'Gestión de Alquileres de Autos'
     message["To"] = ", ".join(to_emails)
     message["Subject"] = subject
 
@@ -33,7 +34,7 @@ def enviar_correo_confirmacion(email):
     try:
         # Conectar al servidor SMTP
         server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()  # Iniciar TLS
+        server.starttls()
         server.login(smtp_user, smtp_password)
 
         # Enviar el correo
@@ -49,6 +50,7 @@ def enviar_correo_confirmacion(email):
     finally:
         if server is not None:
             server.quit()
+
 
 def enviar_correo_confirmacion_pago(email):
     # Configuración del servidor SMTP y credenciales
@@ -65,7 +67,7 @@ def enviar_correo_confirmacion_pago(email):
 
     # Crear el mensaje
     message = MIMEMultipart()
-    message["From"] = 'Gestión de Alquileres de Autos' # si no funciona pongo smtp_user
+    message["From"] = 'Gestión de Alquileres de Autos'
     message["To"] = ", ".join(to_emails)
     message["Subject"] = subject
 
@@ -81,7 +83,7 @@ def enviar_correo_confirmacion_pago(email):
     try:
         # Conectar al servidor SMTP
         server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()  # Iniciar TLS
+        server.starttls()
         server.login(smtp_user, smtp_password)
 
         # Enviar el correo
@@ -97,7 +99,4 @@ def enviar_correo_confirmacion_pago(email):
     finally:
         if server is not None:
             server.quit()
-
-# Ejemplo de uso:
-# enviar_correo_confirmacion("juanpsoperez@gmail.com")
 

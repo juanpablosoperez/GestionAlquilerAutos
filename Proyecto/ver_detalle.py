@@ -1,12 +1,9 @@
 import wx
 from reserva_vehiculo import ReservaVehiculo
 
-###########################################################################
-## Class VerDetalle
-###########################################################################
 
 class VerDetalle(wx.Frame):
-
+    # codigo para la interfaz
     def __init__(self, parent, user_id, vehiculo_id, email, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Detalle del Vehículo", pos=wx.DefaultPosition,
@@ -35,7 +32,6 @@ class VerDetalle(wx.Frame):
         fgSizer11.SetFlexibleDirection(wx.BOTH)
         fgSizer11.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
 
-        # Marca
         self.m_staticText55 = wx.StaticText(self, wx.ID_ANY, u"Marca:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55.Wrap(-1)
         self.m_staticText55.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -45,7 +41,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl24.Enable(False)
         fgSizer11.Add(self.m_textCtrl24, 0, wx.ALL, 5)
 
-        # Modelo
         self.m_staticText551 = wx.StaticText(self, wx.ID_ANY, u"Modelo:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551.Wrap(-1)
         self.m_staticText551.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -55,7 +50,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl241.Enable(False)
         fgSizer11.Add(self.m_textCtrl241, 0, wx.ALL, 5)
 
-        # Año
         self.m_staticText5511 = wx.StaticText(self, wx.ID_ANY, u"Año:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText5511.Wrap(-1)
         self.m_staticText5511.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -65,7 +59,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl2411.Enable(False)
         fgSizer11.Add(self.m_textCtrl2411, 0, wx.ALL, 5)
 
-        # Precio por Día
         self.m_staticText55111 = wx.StaticText(self, wx.ID_ANY, u"Precio por Día:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55111.Wrap(-1)
         self.m_staticText55111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -75,7 +68,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl24111.Enable(False)
         fgSizer11.Add(self.m_textCtrl24111, 0, wx.ALL, 5)
 
-        # Disponibilidad
         self.m_staticText551111 = wx.StaticText(self, wx.ID_ANY, u"Disponibilidad:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551111.Wrap(-1)
         self.m_staticText551111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -85,7 +77,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl241111.Enable(False)
         fgSizer11.Add(self.m_textCtrl241111, 0, wx.ALL, 5)
 
-        # Matrícula
         self.m_staticText5511111 = wx.StaticText(self, wx.ID_ANY, u"Matrícula:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText5511111.Wrap(-1)
         self.m_staticText5511111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -95,7 +86,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl2411111.Enable(False)
         fgSizer11.Add(self.m_textCtrl2411111, 0, wx.ALL, 5)
 
-        # Color
         self.m_staticText55111111 = wx.StaticText(self, wx.ID_ANY, u"Color:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText55111111.Wrap(-1)
         self.m_staticText55111111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -105,7 +95,6 @@ class VerDetalle(wx.Frame):
         self.m_textCtrl24111111.Enable(False)
         fgSizer11.Add(self.m_textCtrl24111111, 0, wx.ALL, 5)
 
-        # Tipo
         self.m_staticText551111111 = wx.StaticText(self, wx.ID_ANY, u"Tipo:", wx.DefaultPosition, wx.DefaultSize, 0)
         self.m_staticText551111111.Wrap(-1)
         self.m_staticText551111111.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
@@ -142,7 +131,7 @@ class VerDetalle(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
+        # Eventos
         self.m_button43.Bind(wx.EVT_BUTTON, self.cancelar)
         self.m_button431.Bind(wx.EVT_BUTTON, self.reservar)
 
@@ -154,6 +143,5 @@ class VerDetalle(wx.Frame):
         email = self.email
         # Pasa el valor de precio_por_dia a la nueva ventana ReservaVehiculo
         reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')), self.user_id, vehiculo_id, email)
-        #print("id vehiculo: " + str(vehiculo_id))
         reserva_vehiculo.Show()
 
