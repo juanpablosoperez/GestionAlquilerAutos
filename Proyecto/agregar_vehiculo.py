@@ -7,7 +7,7 @@ class AgregarVehiculo(wx.Frame):
     def __init__(self, parent):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Agregar Vehículo", pos=wx.DefaultPosition,
-                          size=wx.Size(300, 380), style=estilo)
+                          size=wx.Size(300, 420), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -103,6 +103,17 @@ class AgregarVehiculo(wx.Frame):
 
         fgSizer9.Add(self.m_textCtrl194, 0, wx.ALL, 5)
 
+        self.m_staticText249 = wx.StaticText(self, wx.ID_ANY, u"Tipo:", wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_staticText249.Wrap(-1)
+        self.m_staticText249.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
+
+        fgSizer9.Add(self.m_staticText249, 0, wx.ALL, 5)
+
+        self.m_textCtrl199 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl199.SetToolTip(u"Tipo de Vehículo")
+
+        fgSizer9.Add(self.m_textCtrl199, 0, wx.ALL, 5)
+
         bSizer82.Add(fgSizer9, 1, wx.EXPAND, 5)
 
         bSizer4 = wx.BoxSizer(wx.HORIZONTAL)
@@ -147,6 +158,7 @@ class AgregarVehiculo(wx.Frame):
         disponibilidad = 1 if self.m_choice2.GetSelection() == 1 else 0
         matricula = self.m_textCtrl193.GetValue()
         color = self.m_textCtrl194.GetValue()
+        tipo = self.m_textCtrl199.GetValue()
 
         conn = sqlite3.connect('gestion_alquiler_autos.db')
         cursor = conn.cursor()
@@ -159,10 +171,10 @@ class AgregarVehiculo(wx.Frame):
 
             # Insertar el nuevo registro
             consulta_sql = """
-                INSERT INTO Vehiculo (vehiculo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO Vehiculo (vehiculo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             """
-            cursor.execute(consulta_sql, (nuevo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color))
+            cursor.execute(consulta_sql, (nuevo_id, marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo))
 
             # Confirmar los cambios
             conn.commit()

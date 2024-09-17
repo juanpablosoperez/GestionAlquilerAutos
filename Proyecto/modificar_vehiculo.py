@@ -7,7 +7,7 @@ class ModificarVehiculo(wx.Frame):
     def __init__(self, parent, datos_vehiculo):
         estilo = wx.MINIMIZE_BOX | wx.CLOSE_BOX | wx.SYSTEM_MENU | wx.CAPTION | wx.CLIP_CHILDREN
         wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"Modificar Vehículo", pos=wx.DefaultPosition,
-                          size=wx.Size(300, 380), style=estilo)
+                          size=wx.Size(300, 420), style=estilo)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         icon = wx.Icon(
@@ -100,9 +100,20 @@ class ModificarVehiculo(wx.Frame):
         fgSizer9.Add(self.m_staticText245, 0, wx.ALL, 5)
 
         self.m_textCtrl194 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
-        self.m_textCtrl194.SetToolTip(u"Color del Vehículo")  # Reemplazo de SetToolTipString
+        self.m_textCtrl194.SetToolTip(u"Color del Vehículo")
 
         fgSizer9.Add(self.m_textCtrl194, 0, wx.ALL, 5)
+
+        self.m_staticText249 = wx.StaticText(self, wx.ID_ANY, u"Tipo:", wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_staticText249.Wrap(-1)
+        self.m_staticText249.SetFont(wx.Font(10, 74, 90, 90, False, "@Arial Unicode MS"))
+
+        fgSizer9.Add(self.m_staticText249, 0, wx.ALL, 5)
+
+        self.m_textCtrl199 = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_textCtrl199.SetToolTip(u"Tipo de Vehículo")
+
+        fgSizer9.Add(self.m_textCtrl199, 0, wx.ALL, 5)
 
         bSizer82.Add(fgSizer9, 1, wx.EXPAND, 5)
 
@@ -156,6 +167,7 @@ class ModificarVehiculo(wx.Frame):
         self.m_choice2.SetSelection(1 if datos_vehiculo[5] == "Disponible" else 2)  # Disponibilidad
         self.m_textCtrl193.SetValue(datos_vehiculo[6])  # Matrícula
         self.m_textCtrl194.SetValue(datos_vehiculo[7])  # Color
+        self.m_textCtrl199.SetValue(datos_vehiculo[8]) # Tipo
 
     def cerrar_sesion(self, event):
         self.Close()
@@ -169,9 +181,10 @@ class ModificarVehiculo(wx.Frame):
         disponibilidad = 1 if self.m_choice2.GetSelection() == 1 else 0
         matricula = self.m_textCtrl193.GetValue()
         color = self.m_textCtrl194.GetValue()
+        tipo = self.m_textCtrl199.GetValue()
 
         # Validar los datos
-        if not (marca and modelo and anio and precio_por_dia and matricula and color):
+        if not (marca and modelo and anio and precio_por_dia and matricula and color and tipo):
             wx.MessageBox("Por favor, complete todos los campos.", "Error", wx.OK | wx.ICON_ERROR)
             return
 
@@ -187,9 +200,10 @@ class ModificarVehiculo(wx.Frame):
                                   precio_por_dia = ?,
                                   disponibilidad = ?,
                                   matricula = ?,
-                                  color = ?
+                                  color = ?,
+                                  tipo = ?
                               WHERE vehiculo_id = ?"""
-            valores = (marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, self.id_vehiculo)
+            valores = (marca, modelo, anio, precio_por_dia, disponibilidad, matricula, color, tipo, self.id_vehiculo)
             cursor.execute(consulta_sql, valores)
             conn.commit()
 
