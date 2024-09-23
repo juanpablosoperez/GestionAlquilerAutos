@@ -139,9 +139,13 @@ class VerDetalle(wx.Frame):
         self.Close()
 
     def reservar(self, event):
-        vehiculo_id = self.vehiculo_id
-        email = self.email
-        # Pasa el valor de precio_por_dia a la nueva ventana ReservaVehiculo
-        reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')), self.user_id, vehiculo_id, email)
-        reserva_vehiculo.Show()
+        if self.m_textCtrl241111.GetValue() == "No disponible":
+            wx.MessageBox("El vehículo no está disponible para reserva.", "Error", wx.ICON_ERROR)
+        else:
+            vehiculo_id = self.vehiculo_id
+            email = self.email
+            # Pasa el valor de precio_por_dia a la nueva ventana ReservaVehiculo
+            reserva_vehiculo = ReservaVehiculo(None, float(self.m_textCtrl24111.GetValue().replace('$', '')),
+                                               self.user_id, vehiculo_id, email)
+            reserva_vehiculo.Show()
 
